@@ -1,5 +1,5 @@
 <div class="center">
-  <div class="tabs">
+  <nav class="tabs">
     <button
       class="tab"
       value="intro"
@@ -16,13 +16,15 @@
     >
       Game
     </button>
-  </div>
+  </nav>
 
-  <ng-template [ngIf]="showPage === 'intro'">
-    <app-intro></app-intro>
-  </ng-template>
+  <main>
+    <ng-template [ngIf]="showPage === 'intro'">
+      <app-intro></app-intro>
+    </ng-template>
 
-  <ng-template [ngIf]="showPage === 'game'">
-    <app-game></app-game>
-  </ng-template>
+    <ng-template [ngIf]="showPage === 'game'">
+      <app-game></app-game>
+    </ng-template>
+  </main>
 </div>
