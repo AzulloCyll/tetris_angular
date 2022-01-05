@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'ngZal';
   showPage = 'intro';
-  whichActive = 'intro';
+
+  //zmiana strony
+  public changePage(event: MouseEvent) {
+    this.showPage = (event.target as HTMLButtonElement).value;
+  }
 }

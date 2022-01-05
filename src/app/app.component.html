@@ -1,7 +1,21 @@
 <div class="center">
   <div class="tabs">
-    <button class="tab" [class.active]="whichActive === 'intro'">Intro</button>
-    <button class="tab" [class.active]="whichActive === 'game'">Game</button>
+    <button
+      class="tab"
+      value="intro"
+      [class.active]="showPage === 'intro'"
+      (click)="changePage($event)"
+    >
+      Intro
+    </button>
+    <button
+      class="tab"
+      value="game"
+      [class.active]="showPage === 'game'"
+      (click)="changePage($event)"
+    >
+      Game
+    </button>
   </div>
 
   <ng-template [ngIf]="showPage === 'intro'">
