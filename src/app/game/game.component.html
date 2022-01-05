@@ -1,1 +1,21 @@
-<p>game works!</p>
+<!-- <tetris-core #game (lineCleared)="onLineCleared()"></tetris-core> -->
+<div class="game"><tetris-core #game></tetris-core></div>
+<div class="right-panel">
+  <div class="display">
+    <h2>player:</h2>
+    <h2>score:</h2>
+  </div>
+  <div class="auxilary">
+    <h2>game:</h2>
+    <button (click)="game.actionStart()">Start</button>
+    <button (click)="game.actionStop()">Stop</button>
+    <button (click)="game.actionReset()">Reset</button>
+  </div>
+  <div class="controls">
+    <h2>controls:</h2>
+    <button (click)="game.actionRotate()">Rotate</button>
+    <button (click)="game.actionLeft()">Left</button>
+    <button (click)="game.actionDown()">Down</button>
+    <button (click)="game.actionRight()">Right</button>
+  </div>
+</div>

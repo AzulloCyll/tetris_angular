@@ -16,6 +16,14 @@
     >
       Game
     </button>
+    <button
+      class="tab"
+      value="scores"
+      [class.active]="showPage === 'scores'"
+      (click)="changePage($event)"
+    >
+      Hi-Scores
+    </button>
   </nav>
 
   <main>
@@ -25,6 +33,10 @@
 
     <ng-template [ngIf]="showPage === 'game'">
       <app-game></app-game>
+    </ng-template>
+
+    <ng-template [ngIf]="showPage === 'scores'">
+      <app-scores></app-scores>
     </ng-template>
   </main>
 </div>

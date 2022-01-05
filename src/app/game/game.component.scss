@@ -1,0 +1,17 @@
+.right-panel {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: aqua;
+  & button {
+    margin: 5px;
+    border: 0;
+    padding: 10px 20px;
+  }
+  & .display {
+    & h2 {
+      margin: 0;
+    }
+  }
+}

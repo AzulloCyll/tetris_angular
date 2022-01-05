@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ngZal';
-  showPage = 'intro';
+  showPage = 'game';
 
   //zmiana strony
   public changePage(event: MouseEvent) {
