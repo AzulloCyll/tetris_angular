@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <app-game></app-game>
+<div class="center">
+  <div class="tabs">
+    <button class="tab" [class.active]="whichActive === 'intro'">Intro</button>
+    <button class="tab" [class.active]="whichActive === 'game'">Game</button>
+  </div>
+
+  <ng-template [ngIf]="showPage === 'intro'">
     <app-intro></app-intro>
-  </body>
-</html>
+  </ng-template>
+
+  <ng-template [ngIf]="showPage === 'game'">
+    <app-game></app-game>
+  </ng-template>
+</div>

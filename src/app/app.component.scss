@@ -1,0 +1,17 @@
+.center {
+  display: block;
+  width: 800px;
+  margin: 0 auto;
+  background-color: antiquewhite;
+  & .tabs {
+    width: 100%;
+    background-color: blue;
+    & .tab {
+      padding: 10px 20px;
+      border: 0;
+    }
+    & .tab.active {
+      background-color: antiquewhite;
+    }
+  }
+}
