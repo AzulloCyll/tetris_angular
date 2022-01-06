@@ -29,6 +29,15 @@
   <main>
     <ng-template [ngIf]="showPage === 'intro'">
       <app-intro></app-intro>
+      <hr />
+      <button
+        class="start-button"
+        value="game"
+        (click)="changePage($event)"
+        [disabled]="isLogged"
+      >
+        start
+      </button>
     </ng-template>
 
     <ng-template [ngIf]="showPage === 'game'">
