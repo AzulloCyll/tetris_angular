@@ -8,10 +8,14 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'ngZal';
   public showPage: String = 'intro';
-  public isLogged: Boolean = true;
+  public isLogged: Boolean = false;
 
   //zmiana strony
   public changePage(event: MouseEvent) {
     this.showPage = (event.target as HTMLButtonElement).value;
+  }
+
+  public chanegeLoginStatus() {
+    this.isLogged = true;
   }
 }

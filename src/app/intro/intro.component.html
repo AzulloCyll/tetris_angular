@@ -1,8 +1,8 @@
 <div class="center">
   <h2>Welcome to ngSnake</h2>
   <p>
-    Sign in and click GO TO GAME button to activate game screen
-
+    Sign in and click GO TO GAME button<br />
+    to activate game screen<br />
     <span class="small">(or change tab to "Game")</span>
   </p>
 
@@ -14,6 +14,7 @@
       id="name"
       [(ngModel)]="loggedPlayer.name"
       (keyup)="verifyLogin()"
+      placeholder="Enter your name"
     />
     <label for="email">Your e-mail:</label>
     <input
@@ -22,6 +23,7 @@
       id="email"
       [(ngModel)]="loggedPlayer.email"
       (keyup)="verifyLogin()"
+      placeholder="Enter your e-mail"
     />
     <button type="button" (click)="signIn()" [disabled]="!loginButtonEnable">
       Sign in

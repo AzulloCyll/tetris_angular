@@ -12,6 +12,7 @@
       class="tab"
       value="game"
       [class.active]="showPage === 'game'"
+      [class.deactivated]="!isLogged"
       (click)="changePage($event)"
     >
       Game
@@ -28,15 +29,15 @@
 
   <main>
     <ng-template [ngIf]="showPage === 'intro'">
-      <app-intro></app-intro>
+      <app-intro (chanegeLoginStatus)="chanegeLoginStatus()"></app-intro>
       <hr />
       <button
         class="start-button"
         value="game"
         (click)="changePage($event)"
-        [disabled]="isLogged"
+        [disabled]="!isLogged"
       >
-        start
+        go to game
       </button>
     </ng-template>
 

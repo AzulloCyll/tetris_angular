@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 interface Player {
   name: string;
@@ -10,7 +10,9 @@ interface Player {
   templateUrl: './intro.component.html',
   styleUrls: ['./intro.component.scss'],
 })
-export class IntroComponent {
+export class IntroComponent implements OnInit {
+  @Output() chanegeLoginStatus: EventEmitter<any> = new EventEmitter();
+
   public loginButtonEnable: boolean = false;
   public loggedPlayer: Player = { name: '', email: '' };
 
@@ -33,5 +35,8 @@ export class IntroComponent {
     // jesli logowanie sie powiedzie to trzeba zmienic w glownej aplikacji zmienna isLogged na true
 
     this.loginButtonEnable = false;
+    this.chanegeLoginStatus.emit();
   }
+
+  ngOnInit(): void {}
 }
