@@ -13,6 +13,7 @@ interface Player {
 export class IntroComponent implements OnInit {
   @Output() chanegeLoginStatus: EventEmitter<any> = new EventEmitter();
 
+  public disableInputs: boolean = false;
   public loginButtonEnable: boolean = false;
   public loggedPlayer: Player = { name: '', email: '' };
 
@@ -28,13 +29,8 @@ export class IntroComponent implements OnInit {
   public signIn() {
     console.log(this.loggedPlayer);
 
-    //zerowanie wartości
-    this.loggedPlayer.name = '';
-    this.loggedPlayer.email = '';
-
-    // jesli logowanie sie powiedzie to trzeba zmienic w glownej aplikacji zmienna isLogged na true
-
     this.loginButtonEnable = false;
+    this.disableInputs = true;
     this.chanegeLoginStatus.emit();
   }
 

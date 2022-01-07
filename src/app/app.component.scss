@@ -39,6 +39,7 @@
       background-color: grey;
     }
     & .tab.deactivated {
+      background-color: silver;
       color: grey;
       cursor: auto;
       pointer-events: none;
@@ -73,7 +74,7 @@ main {
     font-weight: bold;
     margin-top: 20px;
     margin-bottom: 30px;
-    transition: all 0.3 ease-in;
+    transition: all 0.3s ease-in;
   }
   & .start-button:hover {
     background-color: #ff4d00;

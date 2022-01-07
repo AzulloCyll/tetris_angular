@@ -4,6 +4,7 @@
       class="tab"
       value="intro"
       [class.active]="showPage === 'intro'"
+      [class.deactivated]="introDisabled"
       (click)="changePage($event)"
     >
       Intro
@@ -14,6 +15,7 @@
       [class.active]="showPage === 'game'"
       [class.deactivated]="!isLogged"
       (click)="changePage($event)"
+      [disabled]="!isLogged"
     >
       Game
     </button>

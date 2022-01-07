@@ -28,6 +28,11 @@
       border-radius: 5px;
       border: 1px solid grey;
     }
+    & input:disabled {
+      background-color: fixed;
+      color: lightgrey;
+      border: 1px solid lightgrey;
+    }
     & button {
       background-color: darkorange;
       color: white;

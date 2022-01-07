@@ -15,6 +15,7 @@
       [(ngModel)]="loggedPlayer.name"
       (keyup)="verifyLogin()"
       placeholder="Enter your name"
+      [disabled]="disableInputs"
     />
     <label for="email">Your e-mail:</label>
     <input
@@ -24,6 +25,7 @@
       [(ngModel)]="loggedPlayer.email"
       (keyup)="verifyLogin()"
       placeholder="Enter your e-mail"
+      [disabled]="disableInputs"
     />
     <button type="button" (click)="signIn()" [disabled]="!loginButtonEnable">
       Sign in
