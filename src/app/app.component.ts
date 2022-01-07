@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ngZal';
-  public showPage: String = 'intro';
+  public showPage: String = 'game';
   public isLogged: Boolean = false;
   public introDisabled: Boolean = false;
 
