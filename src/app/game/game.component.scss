@@ -1,17 +1,22 @@
 .right-panel {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  justify-content: space-around;
-  background-color: aqua;
-  & button {
-    margin: 5px;
-    border: 0;
-    padding: 10px 20px;
-  }
-  & .display {
+  justify-content: top;
+  align-items: center;
+  text-align: center;
+  color: darkgrey;
+  & div {
     & h2 {
+      font-size: 1em;
       margin: 0;
+      text-transform: uppercase;
+    }
+    & div {
+      font-size: 1.4em;
+      margin-bottom: 20px;
+      color: black;
     }
   }
 }
