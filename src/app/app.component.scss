@@ -1,7 +1,7 @@
 main {
   width: 100%;
   display: block;
-  min-height: 500px;
+  min-height: 700px;
   overflow: auto;
   & .center {
     border-radius: 7px;
@@ -31,6 +31,14 @@ main {
       margin-top: 50px;
       margin-bottom: 30px;
       transition: all 0.3s ease-in;
+      &:hover {
+        background-color: #ff4d00;
+      }
+      &:disabled {
+        cursor: auto;
+        background-color: silver;
+        color: grey;
+      }
     }
     & hr {
       width: 70%;
@@ -38,14 +46,6 @@ main {
       border-bottom: 0px;
       border-right: 0px;
       border-left: 0px;
-    }
-    & .start-button:hover {
-      background-color: #ff4d00;
-    }
-    & .start-button:disabled {
-      cursor: auto;
-      background-color: silver;
-      color: grey;
     }
   }
 }

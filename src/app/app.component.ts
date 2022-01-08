@@ -15,7 +15,6 @@ export class AppComponent {
     this.showPage = ($event.target as HTMLButtonElement).value;
   }
 
-  //zmiana statusu login - true: aktywuje pole do loginu
   public chanegeLoginStatus($event: Boolean) {
     this.isLogged = $event;
   }
