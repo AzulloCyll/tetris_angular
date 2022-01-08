@@ -1,32 +1,51 @@
-<div class="game">
-  <tetris-core #game (lineCleared)="onLineCleared()"></tetris-core>
-</div>
-<div class="right-panel">
-  <div class="welcome">
-    <h2>player</h2>
-    <div>{{ player.name }}</div>
+<div class="center">
+  <div class="game">
+    <tetris-core #game (lineCleared)="onLineCleared()"></tetris-core>
   </div>
-  <div class="score">
-    <h2>score</h2>
-    <div>5222</div>
-  </div>
-  <div class="status">
-    <h2>status</h2>
-    <div>paused</div>
-  </div>
-  <div class="timer">
-    <h2>time</h2>
-    <div>1232</div>
-  </div>
-  <div class="statuscontrol">
-    <button (click)="game.actionStart()">Start</button>
-    <button (click)="game.actionStop()">Stop</button>
-    <button (click)="game.actionReset()">Reset</button>
-  </div>
-  <div class="gamecontrol">
-    <button (click)="onRotateButtonPressed()">Rotate</button>
-    <button (click)="game.actionLeft()">Left</button>
-    <button (click)="game.actionDown()">Down</button>
-    <button (click)="game.actionRight()">Right</button>
+  <div class="right-panel">
+    <div class="welcome">
+      <h2>player</h2>
+      <div>{{ player.name }}</div>
+    </div>
+    <div class="score">
+      <h2>score</h2>
+      <div>0</div>
+    </div>
+    <div class="time">
+      <h2>time</h2>
+      <div>0</div>
+    </div>
+    <div class="status">
+      <h2>status</h2>
+      <div>not started</div>
+    </div>
+
+    <div class="statuscontrol">
+      <h2>status controls</h2>
+
+      <button (click)="game.actionStart()">Start</button>
+      <button (click)="game.actionStop()">Stop</button>
+      <button (click)="game.actionReset()">Reset</button>
+    </div>
+    <div class="gamecontrol">
+      <h2>game controls</h2>
+
+      <div class="row">
+        <div class="directions">
+          <button (click)="game.actionLeft()">Left</button>
+          <button (click)="game.actionRight()">Right</button>
+        </div>
+        <button (click)="game.actionDown()">Down</button>
+      </div>
+
+      <div class="rotate">
+        <button (click)="onRotateButtonPressed()">Rotate</button>
+      </div>
+    </div>
+
+    <hr />
+    <button class="intro" value="intro" (click)="onBackClick($event)">
+      Logout & back to intro
+    </button>
   </div>
 </div>

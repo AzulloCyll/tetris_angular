@@ -1,94 +1,51 @@
-.center {
-  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
-  box-sizing: border-box;
-  display: block;
-  width: 800px;
-  margin: 0 auto;
-  margin-top: 20px;
-  background-color: #fff1d5;
-  & nav.tabs {
-    width: 100%;
-    background-color: none;
-    & .tab {
-      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
-      font-size: 1.2em;
-      border: 0;
-      cursor: pointer;
-      padding: 10px 20px;
-      border-radius: 7px 7px 0px 0px;
-      margin-left: 3px;
-      background-color: darkgrey;
-      color: white;
-      border-top: 3px solid #fff1d5;
-      transition: color 0.3s ease;
-    }
-    & .tab:first-child {
-      margin-left: 0;
-    }
-    & .tab.active {
-      background-color: white;
-      border-top: 3px solid darkorange;
-      color: darkorange;
-    }
-    & .tab.active:hover {
-      background-color: white;
-    }
-    & .tab:hover {
-      color: darkorange;
-      background-color: grey;
-    }
-    & .tab.deactivated {
-      background-color: silver;
-      color: grey;
-      cursor: auto;
-      pointer-events: none;
-    }
-    & .tab.deactivated:hover {
-      background-color: darkgrey;
-    }
-  }
-}
-
 main {
   width: 100%;
   display: block;
   min-height: 500px;
   overflow: auto;
-  background-color: white;
-  border-radius: 0px 7px 7px 7px;
-  & .start-button {
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-      sans-serif;
-    font-size: 1.2em;
-    background-color: darkorange;
-    color: white;
-    cursor: pointer;
+  & .center {
+    border-radius: 7px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    box-sizing: border-box;
     display: block;
-    width: 50%;
-    padding: 12px 20px;
+    width: 800px;
     margin: 0 auto;
-    border: 0;
-    border-radius: 5px;
-    text-transform: uppercase;
-    font-weight: bold;
     margin-top: 20px;
-    margin-bottom: 30px;
-    transition: all 0.3s ease-in;
+    padding: 50px;
+    & .start-button {
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+      font-size: 1.2em;
+      background-color: darkorange;
+      color: white;
+      cursor: pointer;
+      display: block;
+      width: 50%;
+      padding: 12px 20px;
+      margin: 0 auto;
+      border: 0;
+      border-radius: 5px;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin-top: 50px;
+      margin-bottom: 30px;
+      transition: all 0.3s ease-in;
+    }
+    & hr {
+      width: 70%;
+      border-top: 1px solid lightgray;
+      border-bottom: 0px;
+      border-right: 0px;
+      border-left: 0px;
+    }
+    & .start-button:hover {
+      background-color: #ff4d00;
+    }
+    & .start-button:disabled {
+      cursor: auto;
+      background-color: silver;
+      color: grey;
+    }
   }
-  & .start-button:hover {
-    background-color: #ff4d00;
-  }
-  & .start-button:disabled {
-    cursor: auto;
-    background-color: silver;
-    color: grey;
-  }
-}
-
-app-game {
-  margin: 50px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
 }

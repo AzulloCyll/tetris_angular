@@ -1,37 +1,7 @@
-<div class="center">
-  <nav class="tabs">
-    <button
-      class="tab"
-      value="intro"
-      [class.active]="showPage === 'intro'"
-      [class.deactivated]="introDisabled"
-      (click)="changePage($event)"
-    >
-      Intro
-    </button>
-    <button
-      class="tab"
-      value="game"
-      [class.active]="showPage === 'game'"
-      [class.deactivated]="!isLogged"
-      (click)="changePage($event)"
-      [disabled]="!isLogged"
-    >
-      Game
-    </button>
-    <button
-      class="tab"
-      value="scores"
-      [class.active]="showPage === 'scores'"
-      (click)="changePage($event)"
-    >
-      Hi-Scores
-    </button>
-  </nav>
-
-  <main>
+<main>
+  <div class="center">
     <ng-template [ngIf]="showPage === 'intro'">
-      <app-intro (chanegeLoginStatus)="chanegeLoginStatus()"></app-intro>
+      <app-intro (loginStatsuHandler)="chanegeLoginStatus($event)"></app-intro>
       <hr />
       <button
         class="start-button"
@@ -44,11 +14,10 @@
     </ng-template>
 
     <ng-template [ngIf]="showPage === 'game'">
-      <app-game></app-game>
+      <app-game
+        (onPageBack)="changePage($event)"
+        (loginStatsuHandler)="chanegeLoginStatus($event)"
+      ></app-game>
     </ng-template>
-
-    <ng-template [ngIf]="showPage === 'scores'">
-      <app-scores></app-scores>
-    </ng-template>
-  </main>
-</div>
+  </div>
+</main>

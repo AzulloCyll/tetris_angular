@@ -11,7 +11,7 @@ interface Player {
   styleUrls: ['./intro.component.scss'],
 })
 export class IntroComponent implements OnInit {
-  @Output() chanegeLoginStatus: EventEmitter<any> = new EventEmitter();
+  @Output() loginStatsuHandler: EventEmitter<Boolean> = new EventEmitter();
 
   public disableInputs: boolean = false;
   public loginButtonEnable: boolean = false;
@@ -27,11 +27,10 @@ export class IntroComponent implements OnInit {
   }
 
   public signIn() {
-    console.log(this.loggedPlayer);
-
+    // console.log(this.loggedPlayer);
     this.loginButtonEnable = false;
     this.disableInputs = true;
-    this.chanegeLoginStatus.emit();
+    this.loginStatsuHandler.emit(true);
   }
 
   ngOnInit(): void {}

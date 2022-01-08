@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { TetrisCoreComponent } from 'ngx-tetris';
 
 interface LogData {
@@ -19,7 +25,8 @@ interface Player {
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent implements OnInit {
-  constructor() {}
+  @Output() onPageBack: EventEmitter<MouseEvent> = new EventEmitter();
+  @Output() loginStatsuHandler: EventEmitter<Boolean> = new EventEmitter();
 
   log: Array<LogData> = [];
   player: Player = {
@@ -37,6 +44,11 @@ export class GameComponent implements OnInit {
 
   public onLineCleared() {
     console.log('line cleared');
+  }
+
+  public onBackClick($event: MouseEvent) {
+    this.onPageBack.emit($event);
+    this.loginStatsuHandler.emit(false);
   }
 
   ngOnInit(): void {}

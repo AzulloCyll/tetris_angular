@@ -1,22 +1,81 @@
-.right-panel {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+.center {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: top;
-  align-items: center;
-  text-align: center;
-  color: darkgrey;
-  & div {
-    & h2 {
-      font-size: 1em;
-      margin: 0;
-      text-transform: uppercase;
-    }
+  justify-content: space-around;
+  & .right-panel {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    text-align: center;
+    color: darkgrey;
     & div {
-      font-size: 1.4em;
-      margin-bottom: 20px;
-      color: black;
+      & h2 {
+        font-size: 1em;
+        margin: 0;
+        text-transform: uppercase;
+      }
+      & div {
+        font-size: 1.4em;
+        margin-bottom: 15px;
+        color: black;
+      }
+      & button {
+        cursor: pointer;
+        padding: 5px 10px;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        font-size: 1rem;
+        margin: 5px;
+        color: grey;
+        border-radius: 5px;
+        border: 1px solid lightgrey;
+        &:hover {
+          border: 1px solid grey;
+          background-color: silver;
+          color: black;
+        }
+      }
+    }
+    & .statuscontrol {
+      margin-top: 5px;
+    }
+    & .gamecontrol {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      & .row {
+        & .directions {
+          margin-bottom: 0px;
+        }
+      }
+    }
+    & hr {
+      width: 70%;
+      border-top: 1px solid lightgray;
+      border-bottom: 0px;
+      border-right: 0px;
+      border-left: 0px;
+    }
+    & .intro {
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 5px 10px;
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+      font-size: 1rem;
+      margin: 5px;
+      color: grey;
+      border-radius: 5px;
+      border: 1px solid lightgrey;
+      &:hover {
+        border: 1px solid grey;
+        background-color: silver;
+        color: black;
+      }
     }
   }
 }

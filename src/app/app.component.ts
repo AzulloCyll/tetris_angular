@@ -7,19 +7,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ngZal';
-  public showPage: String = 'game';
+  public showPage: String = 'intro'; //change pages - intro/game
   public isLogged: Boolean = false;
-  public introDisabled: Boolean = false;
 
   //zmiana strony
-  public changePage(event: MouseEvent) {
-    this.showPage = (event.target as HTMLButtonElement).value;
-    if (this.showPage === 'game') {
-      this.introDisabled = true;
-    }
+  public changePage($event: MouseEvent) {
+    this.showPage = ($event.target as HTMLButtonElement).value;
   }
 
-  public chanegeLoginStatus() {
-    this.isLogged = true;
+  //zmiana statusu login - true: aktywuje pole do loginu
+  public chanegeLoginStatus($event: Boolean) {
+    this.isLogged = $event;
   }
 }
