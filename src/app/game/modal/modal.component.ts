@@ -11,7 +11,5 @@ export class ModalComponent implements OnInit {
 
   @Input() historyData: Array<LogData> = [];
 
-  ngOnInit(): void {
-    console.log(this.historyData);
-  }
+  ngOnInit(): void {}
 }

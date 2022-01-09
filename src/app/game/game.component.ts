@@ -4,6 +4,7 @@ import {
   ViewChild,
   Output,
   EventEmitter,
+  Input,
 } from '@angular/core';
 
 import { TetrisCoreComponent } from 'ngx-tetris';
@@ -17,7 +18,7 @@ export interface LogData {
   score: number;
 }
 
-interface Player {
+export interface Player {
   name: String;
   email: String;
 }
@@ -31,12 +32,7 @@ export class GameComponent implements OnInit {
   @Output() onPageBack: EventEmitter<MouseEvent> = new EventEmitter();
   @Output() loginStatsuHandler: EventEmitter<Boolean> = new EventEmitter();
 
-  //logged Player
-  // FAKE DATA
-  public player: Player = {
-    name: 'Daniel',
-    email: 'Chmur',
-  };
+  @Input() player: Player = { name: '', email: '' };
 
   //data to log
   public logDataObject: LogData = {
@@ -47,7 +43,7 @@ export class GameComponent implements OnInit {
     timeStamp: 0,
   };
 
-  // FAKE DATA
+  // initial data
   historyData: Array<LogData> = [
     {
       name: 'Janusz',
@@ -189,7 +185,13 @@ export class GameComponent implements OnInit {
   @ViewChild(TetrisCoreComponent)
   private _tetris!: TetrisCoreComponent;
 
+  // uzyte onInit, przepisuje dane z 'player' z rodzica i zapisuje w danych
+  handlePlayerName() {
+    this.logDataObject.name = this.player.name;
+  }
+
   ngOnInit(): void {
     this.createTimestamp();
+    this.handlePlayerName();
   }
 }

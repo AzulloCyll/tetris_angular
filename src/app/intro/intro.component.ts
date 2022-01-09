@@ -11,7 +11,8 @@ interface Player {
   styleUrls: ['./intro.component.scss'],
 })
 export class IntroComponent implements OnInit {
-  @Output() loginStatsuHandler: EventEmitter<Boolean> = new EventEmitter();
+  @Output() loginStatsuHandler: EventEmitter<Boolean> = new EventEmitter(); //potrzebne do uruchomienia przycisku GO TO GAME w app
+  @Output() sendLoggedPlayer: EventEmitter<Player> = new EventEmitter(); //przesylam dane gracza do app
 
   public disableInputs: boolean = false;
   public loginButtonEnable: boolean = false;
@@ -31,6 +32,7 @@ export class IntroComponent implements OnInit {
     this.loginButtonEnable = false;
     this.disableInputs = true;
     this.loginStatsuHandler.emit(true);
+    this.sendLoggedPlayer.emit(this.loggedPlayer);
   }
 
   ngOnInit(): void {}

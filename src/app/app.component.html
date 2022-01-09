@@ -1,7 +1,11 @@
 <main>
   <div class="center">
     <ng-template [ngIf]="showPage === 'intro'">
-      <app-intro (loginStatsuHandler)="chanegeLoginStatus($event)"></app-intro>
+      <app-intro
+        (loginStatsuHandler)="chanegeLoginStatus($event)"
+        (sendLoggedPlayer)="getPlayerData($event)"
+      >
+      </app-intro>
       <hr />
       <button
         class="start-button"
@@ -12,12 +16,8 @@
         go to game
       </button>
     </ng-template>
-
     <ng-template [ngIf]="showPage === 'game'">
-      <app-game
-        (onPageBack)="changePage($event)"
-        (loginStatsuHandler)="chanegeLoginStatus($event)"
-      ></app-game>
+      <app-game (onPageBack)="changePage($event)" [player]="player"></app-game>
     </ng-template>
   </div>
 </main>
