@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ngZal';
-  public showPage: String = 'intro'; //change pages - intro/game
+  public showPage: String = 'game'; //change pages - intro/game
   public isLogged: Boolean = false;
 
   //zmiana strony
