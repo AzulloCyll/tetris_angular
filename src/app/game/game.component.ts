@@ -9,7 +9,7 @@ import {
 import { TetrisCoreComponent } from 'ngx-tetris';
 import { HostListener } from '@angular/core';
 
-interface LogData {
+export interface LogData {
   name: String;
   timePlayed: number;
   timeStamp: number;
