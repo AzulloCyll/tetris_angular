@@ -2,7 +2,7 @@
   <div class="center">
     <div class="info">
       <h2>Game Over</h2>
-      <p>
+      <p *ngIf="historyData.length !== 0">
         Your play is over! <br />You played
         {{ historyData[historyData.length - 1].timePlayed + "s" }} , and scored
         {{ historyData[historyData.length - 1].score }} points!
@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="bottom-nav">
-      <button type="button">BACK TO GAME</button>
+      <button type="button" (click)="backToGame()">BACK TO GAME</button>
     </div>
   </div>
 </div>

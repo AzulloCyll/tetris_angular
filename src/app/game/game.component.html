@@ -66,4 +66,5 @@
 <app-modal
   [historyData]="historyData"
   [class.hidden]="isModalHidden"
+  (handleModalVisibility)="handleModalVisibility($event)"
 ></app-modal>

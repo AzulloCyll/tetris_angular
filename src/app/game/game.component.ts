@@ -34,7 +34,7 @@ export class GameComponent implements OnInit {
 
   @Input() player: Player = { name: '', email: '' };
 
-  public isModalHidden: boolean = false;
+  public isModalHidden: boolean = true;
 
   //data to log
   public logDataObject: LogData = {
@@ -47,90 +47,13 @@ export class GameComponent implements OnInit {
 
   // initial data
   historyData: Array<LogData> = [
-    {
-      name: 'Janusz',
-      score: 15,
-      timePlayed: 145,
-      timeStamp: 82643,
-      action: 'Playing',
-    },
-    {
-      name: 'Grażyna',
-      score: 17,
-      timePlayed: 135,
-      timeStamp: 8255,
-      action: 'Game over',
-    },
-    {
-      name: 'Janusz',
-      score: 15,
-      timePlayed: 145,
-      timeStamp: 82643,
-      action: 'Playing',
-    },
-    {
-      name: 'Grażyna',
-      score: 17,
-      timePlayed: 135,
-      timeStamp: 8255,
-      action: 'Game over',
-    },
-    {
-      name: 'Janusz',
-      score: 15,
-      timePlayed: 145,
-      timeStamp: 82643,
-      action: 'Playing',
-    },
-    {
-      name: 'Grażyna',
-      score: 17,
-      timePlayed: 135,
-      timeStamp: 8255,
-      action: 'Game over',
-    },
-    {
-      name: 'Janusz',
-      score: 15,
-      timePlayed: 145,
-      timeStamp: 82643,
-      action: 'Playing',
-    },
-    {
-      name: 'Grażyna',
-      score: 17,
-      timePlayed: 135,
-      timeStamp: 8255,
-      action: 'Game over',
-    },
-    {
-      name: 'Janusz',
-      score: 15,
-      timePlayed: 145,
-      timeStamp: 82643,
-      action: 'Playing',
-    },
-    {
-      name: 'Grażyna',
-      score: 17,
-      timePlayed: 135,
-      timeStamp: 8255,
-      action: 'Game over',
-    },
-    {
-      name: 'Grażyna',
-      score: 17,
-      timePlayed: 135,
-      timeStamp: 8255,
-      action: 'Game over',
-    },
-    {
-      name: 'Grażyna',
-      score: 17,
-      timePlayed: 135,
-      timeStamp: 8255,
-      action: 'Game over',
-    },
+    // {
+    //   name: 'janusz',
+    //   action: 'costam',
+    //   timePlayed: 45,
+    //   timeStamp: 23632732747,
+    //   score: 13,
+    // },
   ];
 
   // used by timer
@@ -213,8 +136,6 @@ export class GameComponent implements OnInit {
 
     this.createTimestamp();
     this.historyData.push(pushedObject);
-    console.log(this.logDataObject);
-    console.log(this.historyData);
   }
 
   @HostListener('document:keydown', ['$event'])
