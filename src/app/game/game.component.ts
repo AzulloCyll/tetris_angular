@@ -34,6 +34,8 @@ export class GameComponent implements OnInit {
 
   @Input() player: Player = { name: '', email: '' };
 
+  public isModalHidden: boolean = false;
+
   //data to log
   public logDataObject: LogData = {
     action: 'Ready',
@@ -51,6 +53,76 @@ export class GameComponent implements OnInit {
       timePlayed: 145,
       timeStamp: 82643,
       action: 'Playing',
+    },
+    {
+      name: 'Grażyna',
+      score: 17,
+      timePlayed: 135,
+      timeStamp: 8255,
+      action: 'Game over',
+    },
+    {
+      name: 'Janusz',
+      score: 15,
+      timePlayed: 145,
+      timeStamp: 82643,
+      action: 'Playing',
+    },
+    {
+      name: 'Grażyna',
+      score: 17,
+      timePlayed: 135,
+      timeStamp: 8255,
+      action: 'Game over',
+    },
+    {
+      name: 'Janusz',
+      score: 15,
+      timePlayed: 145,
+      timeStamp: 82643,
+      action: 'Playing',
+    },
+    {
+      name: 'Grażyna',
+      score: 17,
+      timePlayed: 135,
+      timeStamp: 8255,
+      action: 'Game over',
+    },
+    {
+      name: 'Janusz',
+      score: 15,
+      timePlayed: 145,
+      timeStamp: 82643,
+      action: 'Playing',
+    },
+    {
+      name: 'Grażyna',
+      score: 17,
+      timePlayed: 135,
+      timeStamp: 8255,
+      action: 'Game over',
+    },
+    {
+      name: 'Janusz',
+      score: 15,
+      timePlayed: 145,
+      timeStamp: 82643,
+      action: 'Playing',
+    },
+    {
+      name: 'Grażyna',
+      score: 17,
+      timePlayed: 135,
+      timeStamp: 8255,
+      action: 'Game over',
+    },
+    {
+      name: 'Grażyna',
+      score: 17,
+      timePlayed: 135,
+      timeStamp: 8255,
+      action: 'Game over',
     },
     {
       name: 'Grażyna',
@@ -175,6 +247,7 @@ export class GameComponent implements OnInit {
     this.timerPause();
     this.logDataObject.action = 'Game over';
     this.logData();
+    this.handleModalVisibility(false);
   }
 
   public onBackClick($event: MouseEvent) {
@@ -188,6 +261,10 @@ export class GameComponent implements OnInit {
   // uzyte onInit, przepisuje dane z 'player' z rodzica i zapisuje w danych
   handlePlayerName() {
     this.logDataObject.name = this.player.name;
+  }
+
+  handleModalVisibility($event: boolean) {
+    this.isModalHidden = $event;
   }
 
   ngOnInit(): void {

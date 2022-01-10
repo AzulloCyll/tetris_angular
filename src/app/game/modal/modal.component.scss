@@ -25,33 +25,55 @@
       height: 20%;
     }
     & .history {
-      height: 70%;
+      height: 65%;
       & nav {
         margin-bottom: 20px;
       }
-
-      & div {
-        padding-bottom: 3px;
+      & .names {
+        width: 90%;
         display: flex;
         flex-direction: row;
         justify-content: center;
+
         & div {
           width: 15%;
-          padding-top: 3px;
-          padding-bottom: 3px;
-          color: grey;
-          border-bottom: 1px solid silver;
-        }
-      }
-      & .names {
-        & div {
           color: black;
           border-bottom: 2px solid grey;
         }
       }
+      & .table {
+        padding-left: 8px;
+        overflow: auto;
+        height: 60%;
+        margin-bottom: 20px;
+        width: 90%;
+
+        & div {
+          padding-bottom: 3px;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          & div {
+            width: 15%;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            color: grey;
+            border-bottom: 1px solid silver;
+          }
+        }
+      }
     }
     & .bottom-nav {
-      height: 10%;
+      height: 15%;
+      & button {
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        padding: 10px 20px;
+        background-color: darkorange;
+        color: white;
+        border: 0;
+        border-radius: 7px;
+      }
     }
   }
 }
