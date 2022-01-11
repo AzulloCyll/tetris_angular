@@ -38,6 +38,10 @@
           background-color: silver;
           color: black;
         }
+        &.disabled {
+          pointer-events: none;
+          color: silver;
+        }
       }
     }
     & .statuscontrol {

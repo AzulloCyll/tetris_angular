@@ -11,11 +11,12 @@ import { TetrisCoreComponent } from 'ngx-tetris';
 import { HostListener } from '@angular/core';
 
 export interface LogData {
-  name: String;
+  name?: String;
   timePlayed: number;
   timeStamp: number;
-  action: String;
+  status?: String;
   score: number;
+  action: string;
 }
 
 export interface Player {
@@ -38,21 +39,50 @@ export class GameComponent implements OnInit {
 
   //data to log
   public logDataObject: LogData = {
-    action: 'Ready',
+    action: '',
     name: this.player.name,
     score: 0,
+    status: 'Ready',
     timePlayed: 0,
     timeStamp: 0,
   };
 
-  // initial data
+  // TEST DATA
   historyData: Array<LogData> = [
     // {
-    //   name: 'janusz',
-    //   action: 'costam',
-    //   timePlayed: 45,
-    //   timeStamp: 23632732747,
-    //   score: 13,
+    //   action: 'test action',
+    //   name: 'Test player',
+    //   timePlayed: 20,
+    //   timeStamp: 1,
+    //   score: 34,
+    // },
+    // {
+    //   action: 'test action2',
+    //   name: 'Test player2',
+    //   timePlayed: 20,
+    //   timeStamp: 2,
+    //   score: 34,
+    // },
+    // {
+    //   action: 'test action3',
+    //   name: 'Test player3',
+    //   timePlayed: 20,
+    //   timeStamp: 3,
+    //   score: 34,
+    // },
+    // {
+    //   action: 'test action3',
+    //   name: 'Test player3',
+    //   timePlayed: 20,
+    //   timeStamp: 3,
+    //   score: 34,
+    // },
+    // {
+    //   action: 'test action3',
+    //   name: 'Test player3',
+    //   timePlayed: 20,
+    //   timeStamp: 3,
+    //   score: 34,
     // },
   ];
 
@@ -83,24 +113,22 @@ export class GameComponent implements OnInit {
     switch (($event.target as HTMLButtonElement).value) {
       case 'start':
         this._tetris.actionStart();
-        this.logDataObject.action = 'Playing';
+        this.logDataObject.status = 'Playing';
         this.timerStart();
-        this.logData();
+        this.logData('Started game');
         break;
-
       case 'stop':
         this._tetris.actionStop();
-        this.logDataObject.action = 'Paused';
+        this.logDataObject.status = 'Paused';
         this.timerPause();
-        this.logData();
+        this.logData('Paused game');
         break;
-
       case 'reset':
         this._tetris.actionReset();
         this._tetris.actionStop();
-        this.logDataObject.action = 'Ready';
+        this.logDataObject.status = 'Ready';
         this.timerReset();
-        this.logData();
+        this.logData('Restarted game');
         break;
 
       case 'left':
@@ -125,10 +153,9 @@ export class GameComponent implements OnInit {
     this.logDataObject.timeStamp = Date.now();
   }
 
-  logData() {
+  logData(action: string) {
     let pushedObject: LogData = {
-      action: this.logDataObject.action,
-      name: this.logDataObject.name,
+      action: action,
       score: this.logDataObject.score,
       timePlayed: this.logDataObject.timePlayed,
       timeStamp: this.logDataObject.timeStamp,
@@ -161,13 +188,13 @@ export class GameComponent implements OnInit {
 
   public onLineCleared() {
     this.logDataObject.score += 1;
-    this.logData();
+    this.logData('Cleared line');
   }
 
   public onGameOver() {
     this.timerPause();
-    this.logDataObject.action = 'Game over';
-    this.logData();
+    this.logDataObject.status = 'Game over';
+    this.logData('Ends game');
     this.handleModalVisibility(false);
   }
 

@@ -9,6 +9,7 @@ import { Player } from './game/game.component';
 export class AppComponent {
   title = 'ngZal';
   public showPage: String = 'intro'; //change pages - intro/game
+
   public isLogged: Boolean = false;
   public player: Player = { name: '', email: '' };
 

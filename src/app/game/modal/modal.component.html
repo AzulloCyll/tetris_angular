@@ -10,11 +10,25 @@
     </div>
     <div class="history">
       <h2>Game history</h2>
-      <nav>[navigation]</nav>
-
+      <nav>
+        Sort by:
+        <!-- Timestamp -->
+        <button (click)="sortByTimestampHandler()">
+          {{ sortByTimestampUP ? "Timestamp 123" : "Timestamp 321" }}
+        </button>
+        Filter by action type:
+        <select (change)="filterByActionHandler($event)">
+          <option
+            *ngFor="let option of optionsInFilter"
+            [value]="option"
+            [attr.selected]="option === optionSelected ? true : null"
+          >
+            {{ option }}
+          </option>
+        </select>
+      </nav>
       <div class="names">
         <div>Timestamp</div>
-        <div>Name</div>
         <div>Action</div>
         <div>Playing time</div>
         <div>Score</div>
@@ -22,7 +36,6 @@
       <div class="table">
         <div *ngFor="let item of historyData">
           <div>{{ item.timeStamp }}</div>
-          <div>{{ item.name }}</div>
           <div>{{ item.action }}</div>
           <div>{{ item.timePlayed }}</div>
           <div>{{ item.score }}</div>

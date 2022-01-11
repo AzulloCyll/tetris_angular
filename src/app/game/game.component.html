@@ -23,23 +23,38 @@
     </div>
     <div class="status">
       <h2>status</h2>
-      <div>{{ logDataObject.action }}</div>
+      <div>{{ logDataObject.status }}</div>
     </div>
 
     <div class="statuscontrol">
       <h2>status controls</h2>
       <button
-        *ngIf="logDataObject.action !== 'Paused'; else paused"
+        *ngIf="logDataObject.status !== 'Paused'; else paused"
         value="start"
         (click)="onButtonPressed($event)"
+        [class.disabled]="logDataObject.status === 'Playing'"
       >
         Start
       </button>
       <ng-template #paused>
         <button value="start" (click)="onButtonPressed($event)">Resume</button>
       </ng-template>
-      <button value="stop" (click)="onButtonPressed($event)">Pause</button>
-      <button value="reset" (click)="onButtonPressed($event)">Reset</button>
+      <button
+        value="stop"
+        (click)="onButtonPressed($event)"
+        [class.disabled]="
+          logDataObject.status === 'Paused' || logDataObject.status === 'Ready'
+        "
+      >
+        Pause
+      </button>
+      <button
+        value="reset"
+        (click)="onButtonPressed($event)"
+        [class.disabled]="logDataObject.status === 'Ready'"
+      >
+        Reset
+      </button>
     </div>
 
     <div class="gamecontrol">
