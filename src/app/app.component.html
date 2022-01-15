@@ -1,6 +1,6 @@
 <main>
   <div class="center">
-    <ng-template [ngIf]="showPage === 'intro'">
+    <ng-container *ngIf="showPage === 'intro'">
       <app-intro
         (loginStatsuHandler)="chanegeLoginStatus($event)"
         (sendLoggedPlayer)="getPlayerData($event)"
@@ -15,9 +15,12 @@
       >
         go to game
       </button>
-    </ng-template>
-    <ng-template [ngIf]="showPage === 'game'">
-      <app-game (onPageBack)="changePage($event)" [player]="player"></app-game>
-    </ng-template>
+    </ng-container>
+
+    <app-game
+      *ngIf="showPage === 'game'"
+      (onPageBack)="changePage($event)"
+      [player]="player"
+    ></app-game>
   </div>
 </main>
