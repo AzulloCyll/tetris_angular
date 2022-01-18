@@ -20,8 +20,9 @@ export class ModalComponent implements OnInit {
     this.optionsInFilter.unshift('All'); //default option
   }
 
-  public filterByActionHandler($event: any) {
-    console.log($event.target.value);
+  public filterByActionHandler($event: Event) {
+    this.optionSelected = ($event.target as HTMLOptionElement).value;
+    console.log(this.optionSelected);
   }
 
   public sortByTimestampHandler() {

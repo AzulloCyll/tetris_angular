@@ -32,7 +32,7 @@
       </div>
       <div class="table">
         <div *ngFor="let item of historyData | sortBy: sortByTimestampUP">
-          <div>{{ item.timeStamp }}</div>
+          <div>{{ item.timeStamp | date: 'dd.M.YYYYr H:mm:ss' }}</div>
           <div>{{ item.action }}</div>
           <div>{{ item.timePlayed }}</div>
           <div>{{ item.score }}</div>

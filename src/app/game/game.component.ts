@@ -50,39 +50,112 @@ export class GameComponent implements OnInit {
   // TEST DATA
   historyData: Array<LogData> = [
     {
-      action: 'test action',
-      name: 'Test player',
-      timePlayed: 20,
-      timeStamp: 1,
-      score: 34,
+      action: 'Started game',
+      score: 0,
+      timePlayed: 0,
+      timeStamp: 1642500674305,
     },
     {
-      action: 'test action2',
-      name: 'Test player2',
-      timePlayed: 20,
-      timeStamp: 2,
-      score: 34,
+      action: 'Started game',
+      score: 0,
+      timePlayed: 1,
+      timeStamp: 1642500681522,
     },
     {
-      action: 'test action3',
-      name: 'Test player3',
-      timePlayed: 20,
-      timeStamp: 3,
-      score: 34,
+      action: 'Started game',
+      score: 0,
+      timePlayed: 6,
+      timeStamp: 1642500682750,
     },
     {
-      action: 'test action3',
-      name: 'Test player3',
-      timePlayed: 20,
-      timeStamp: 3,
-      score: 34,
+      action: 'Started game',
+      score: 0,
+      timePlayed: 10,
+      timeStamp: 1642500688014,
     },
     {
-      action: 'test action3',
-      name: 'Test player3',
+      action: 'Started game',
+      score: 0,
+      timePlayed: 12,
+      timeStamp: 1642500691598,
+    },
+    {
+      action: 'Started game',
+      score: 0,
+      timePlayed: 12,
+      timeStamp: 1642500693678,
+    },
+    {
+      action: 'Started game',
+      score: 0,
+      timePlayed: 16,
+      timeStamp: 1642500694054,
+    },
+    {
+      action: 'Started game',
+      score: 0,
+      timePlayed: 16,
+      timeStamp: 1642500697542,
+    },
+    {
+      action: 'Started game',
+      score: 0,
+      timePlayed: 18,
+      timeStamp: 1642500697862,
+    },
+    {
+      action: 'Started game',
+      score: 0,
+      timePlayed: 18,
+      timeStamp: 1642500700142,
+    },
+    {
+      action: 'Cleared line',
+      score: 1,
       timePlayed: 20,
-      timeStamp: 3,
-      score: 34,
+      timeStamp: 1642500700342,
+    },
+    {
+      action: 'Cleared line',
+      score: 2,
+      timePlayed: 22,
+      timeStamp: 1642500701852,
+    },
+    {
+      action: 'Started game',
+      score: 2,
+      timePlayed: 27,
+      timeStamp: 1642500703646,
+    },
+    {
+      action: 'Cleared line',
+      score: 3,
+      timePlayed: 28,
+      timeStamp: 1642500708880,
+    },
+    {
+      action: 'Started game',
+      score: 3,
+      timePlayed: 36,
+      timeStamp: 1642500710381,
+    },
+    {
+      action: 'Paused game',
+      score: 3,
+      timePlayed: 39,
+      timeStamp: 1642500718104,
+    },
+    {
+      action: 'Started game',
+      score: 3,
+      timePlayed: 39,
+      timeStamp: 1642500721360,
+    },
+    {
+      action: 'Ends game',
+      score: 3,
+      timePlayed: 43,
+      timeStamp: 1642500722106,
     },
   ];
 
@@ -149,6 +222,7 @@ export class GameComponent implements OnInit {
     }
   }
 
+  //util
   createTimestamp() {
     this.logDataObject.timeStamp = Date.now();
   }
@@ -165,6 +239,7 @@ export class GameComponent implements OnInit {
     this.historyData.push(pushedObject);
   }
 
+  //hidden feature - WSAD/Arrows/Space controls
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent($event: KeyboardEvent) {
     switch ($event.code) {
@@ -196,6 +271,7 @@ export class GameComponent implements OnInit {
     this.logDataObject.status = 'Game over';
     this.logData('Ends game');
     this.handleModalVisibility(false);
+    console.log(this.historyData);
   }
 
   public onBackClick($event: MouseEvent) {
