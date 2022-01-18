@@ -3,9 +3,8 @@
     <div class="info">
       <h2>Game Over</h2>
       <p *ngIf="historyData.length !== 0">
-        Your play is over! <br />You played
-        {{ historyData[historyData.length - 1].timePlayed + "s" }} , and scored
-        {{ historyData[historyData.length - 1].score }} points!
+        Your play is over! <br />You played {{ timePlayed }}s , and scored
+        {{ score }} points!
       </p>
     </div>
     <div class="history">

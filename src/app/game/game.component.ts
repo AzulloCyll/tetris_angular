@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 
 import { TetrisCoreComponent } from 'ngx-tetris';
-import { HostListener } from '@angular/core';
+import { HostListener } from '@angular/core'; //for keayboard controls
 
 export interface LogData {
   name?: String;
@@ -18,12 +18,10 @@ export interface LogData {
   score: number;
   action: string;
 }
-
 export interface Player {
   name: String;
   email: String;
 }
-
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -36,8 +34,11 @@ export class GameComponent implements OnInit {
   @Input() player: Player = { name: '', email: '' };
   @ViewChild(TetrisCoreComponent) private _tetris!: TetrisCoreComponent;
 
+  // te zmienne są inputami w modal
   public isModalHidden: boolean = true;
   public optionsInFilter: Array<string> = [];
+  public score: number = 0;
+  public timePlayed: number = 0;
 
   //data to log
   public logDataObject: LogData = {
@@ -50,106 +51,42 @@ export class GameComponent implements OnInit {
   };
 
   // TEST DATA
-  historyData: Array<LogData> = [
-    // {
-    //   action: 'Ends game',
-    //   score: 5,
-    //   timePlayed: 53,
-    //   timeStamp: 1642511710746,
-    // },
-    // {
-    //   action: 'Cleared line',
-    //   score: 5,
-    //   timePlayed: 39,
-    //   timeStamp: 1642511703525,
-    // },
-    // {
-    //   action: 'Cleared line',
-    //   score: 4,
-    //   timePlayed: 32,
-    //   timeStamp: 1642511698774,
-    // },
-    // {
-    //   action: 'Cleared line',
-    //   score: 3,
-    //   timePlayed: 27,
-    //   timeStamp: 1642511696377,
-    // },
-    // {
-    //   action: 'Cleared line',
-    //   score: 2,
-    //   timePlayed: 25,
-    //   timeStamp: 1642511689222,
-    // },
-    // {
-    //   action: 'Cleared line',
-    //   score: 1,
-    //   timePlayed: 17,
-    //   timeStamp: 1642511675351,
-    // },
-    // {
-    //   action: 'Started game',
-    //   score: 0,
-    //   timePlayed: 4,
-    //   timeStamp: 1642511674151,
-    // },
-    // {
-    //   action: 'Paused game',
-    //   score: 0,
-    //   timePlayed: 4,
-    //   timeStamp: 1642511669753,
-    // },
-    // {
-    //   action: 'Started game',
-    //   score: 0,
-    //   timePlayed: 0,
-    //   timeStamp: 1642511668290,
-    // },
-  ];
+  historyData: Array<LogData> = [];
 
-  // TIMER
+  // timer data
   timeoutId: number = 0;
   timerOn: boolean = false;
-
-  private timerStart() {
-    if (!this.timerOn) {
-      this.timerOn = true;
-      this.timeoutId = window.setInterval(() => {
-        this.logDataObject.timePlayed++;
-      }, 1000);
-    }
-  }
-
-  private timerPause() {
-    this.timerOn = false;
-    clearInterval(this.timeoutId);
-  }
-
-  private timerReset() {
-    this.timerPause();
-    this.logDataObject.timePlayed = 0;
-  }
 
   // shows and hides history page
   public handleModalVisibility($event: boolean) {
     this.isModalHidden = $event;
   }
 
+  public countScoreAndTimePlayed() {
+    let allScores = this.historyData.map((item) => item.score);
+    let allPlayTimes = this.historyData.map((item) => item.timePlayed);
+    this.score = Math.max(...allScores);
+    this.timePlayed = Math.max(...allPlayTimes);
+  }
+
   // game controls
   public onButtonPressed($event: MouseEvent) {
-    $event.preventDefault();
     switch (($event.target as HTMLButtonElement).value) {
       case 'start':
         this._tetris.actionStart();
         this.logDataObject.status = 'Playing';
         this.timerStart();
         this.logData('Started game');
+        console.log(this.player);
+
+        ($event.target as HTMLButtonElement).blur();
         break;
       case 'stop':
         this._tetris.actionStop();
         this.logDataObject.status = 'Paused';
         this.timerPause();
         this.logData('Paused game');
+        ($event.target as HTMLButtonElement).blur();
         break;
       case 'reset':
         this._tetris.actionReset();
@@ -157,6 +94,7 @@ export class GameComponent implements OnInit {
         this.logDataObject.status = 'Ready';
         this.timerReset();
         this.logData('Restarted game');
+        ($event.target as HTMLButtonElement).blur();
         break;
 
       case 'left':
@@ -177,19 +115,22 @@ export class GameComponent implements OnInit {
     }
   }
 
+  //game events
   public onLineCleared() {
     this.logDataObject.score++;
     this.logData('Cleared line');
   }
-
   public onGameOver() {
     this.timerPause();
     this.logDataObject.status = 'Game over';
     this.logData('Ends game');
-    this.handleModalVisibility(false);
+
     this.generateOptionsInFilter();
+    this.countScoreAndTimePlayed();
+    this.handleModalVisibility(false);
   }
 
+  //back to intro page
   public onBackClick($event: MouseEvent) {
     this.onPageBack.emit($event);
     this.loginStatsuHandler.emit(false);
@@ -197,13 +138,13 @@ export class GameComponent implements OnInit {
 
   //utility functions
   private logData(action: string) {
+    this.createTimestamp();
     let pushedObject: LogData = {
       action: action,
       score: this.logDataObject.score,
       timePlayed: this.logDataObject.timePlayed,
       timeStamp: this.logDataObject.timeStamp,
     };
-    this.createTimestamp();
     this.historyData.push(pushedObject);
   }
 
@@ -217,15 +158,9 @@ export class GameComponent implements OnInit {
     this.optionsInFilter.unshift('All'); //default option
   }
 
-  // uzyte onInit, przepisuje dane z 'player' z rodzica i zapisuje w danych
-  private handlePlayerName() {
-    this.logDataObject.name = this.player.name;
-  }
-
   //hidden feature - WSAD/Arrows/Space controls
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent($event: KeyboardEvent) {
-    $event.preventDefault();
     switch ($event.code) {
       case 'KeyS':
       case 'ArrowDown':
@@ -245,8 +180,23 @@ export class GameComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    this.createTimestamp();
-    this.handlePlayerName();
+  //Timer methods
+  private timerStart() {
+    if (!this.timerOn) {
+      this.timerOn = true;
+      this.timeoutId = window.setInterval(() => {
+        this.logDataObject.timePlayed++;
+      }, 1000);
+    }
   }
+  private timerPause() {
+    this.timerOn = false;
+    clearInterval(this.timeoutId);
+  }
+  private timerReset() {
+    this.timerPause();
+    this.logDataObject.timePlayed = 0;
+  }
+
+  ngOnInit(): void {}
 }

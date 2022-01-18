@@ -11,12 +11,12 @@ export class ModalComponent implements OnInit {
 
   @Input() historyData: Array<LogData> = [];
   @Input() optionsInFilter: Array<string> = [];
+  @Input() score: number = 0;
+  @Input() timePlayed: number = 0;
+  @Input() sortByTimestampUP: boolean = true;
+  @Input() optionSelected: string = 'All';
 
   @Output() handleModalVisibility: EventEmitter<boolean> = new EventEmitter();
-
-  public sortByTimestampUP: boolean = true;
-
-  public optionSelected: string = 'All';
 
   public filterByActionHandler($event: Event) {
     this.optionSelected = ($event.target as HTMLOptionElement).value;
