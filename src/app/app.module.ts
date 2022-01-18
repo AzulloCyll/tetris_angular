@@ -9,9 +9,10 @@ import { GameComponent } from './game/game.component';
 
 import { TetrisCoreModule } from 'ngx-tetris'; // game core
 import { ModalComponent } from './game/modal/modal.component';
+import { SortByPipe } from './sort-by.pipe';
 
 @NgModule({
-  declarations: [AppComponent, IntroComponent, GameComponent, ModalComponent],
+  declarations: [AppComponent, IntroComponent, GameComponent, ModalComponent, SortByPipe],
   imports: [BrowserModule, TetrisCoreModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

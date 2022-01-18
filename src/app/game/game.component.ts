@@ -35,7 +35,7 @@ export class GameComponent implements OnInit {
 
   @Input() player: Player = { name: '', email: '' };
 
-  public isModalHidden: boolean = true;
+  public isModalHidden: boolean = false;
 
   //data to log
   public logDataObject: LogData = {
@@ -49,41 +49,41 @@ export class GameComponent implements OnInit {
 
   // TEST DATA
   historyData: Array<LogData> = [
-    // {
-    //   action: 'test action',
-    //   name: 'Test player',
-    //   timePlayed: 20,
-    //   timeStamp: 1,
-    //   score: 34,
-    // },
-    // {
-    //   action: 'test action2',
-    //   name: 'Test player2',
-    //   timePlayed: 20,
-    //   timeStamp: 2,
-    //   score: 34,
-    // },
-    // {
-    //   action: 'test action3',
-    //   name: 'Test player3',
-    //   timePlayed: 20,
-    //   timeStamp: 3,
-    //   score: 34,
-    // },
-    // {
-    //   action: 'test action3',
-    //   name: 'Test player3',
-    //   timePlayed: 20,
-    //   timeStamp: 3,
-    //   score: 34,
-    // },
-    // {
-    //   action: 'test action3',
-    //   name: 'Test player3',
-    //   timePlayed: 20,
-    //   timeStamp: 3,
-    //   score: 34,
-    // },
+    {
+      action: 'test action',
+      name: 'Test player',
+      timePlayed: 20,
+      timeStamp: 1,
+      score: 34,
+    },
+    {
+      action: 'test action2',
+      name: 'Test player2',
+      timePlayed: 20,
+      timeStamp: 2,
+      score: 34,
+    },
+    {
+      action: 'test action3',
+      name: 'Test player3',
+      timePlayed: 20,
+      timeStamp: 3,
+      score: 34,
+    },
+    {
+      action: 'test action3',
+      name: 'Test player3',
+      timePlayed: 20,
+      timeStamp: 3,
+      score: 34,
+    },
+    {
+      action: 'test action3',
+      name: 'Test player3',
+      timePlayed: 20,
+      timeStamp: 3,
+      score: 34,
+    },
   ];
 
   // used by timer

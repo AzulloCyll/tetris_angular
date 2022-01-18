@@ -14,15 +14,12 @@
         Sort by:
         <!-- Timestamp -->
         <button (click)="sortByTimestampHandler()">
-          {{ sortByTimestampUP ? "Timestamp 123" : "Timestamp 321" }}
+          {{ sortByTimestampUP ? "Timestamp 321" : "Timestamp 123" }}
         </button>
         Filter by action type:
         <select (change)="filterByActionHandler($event)">
-          <option
-            *ngFor="let option of optionsInFilter"
-            [value]="option"
-            [attr.selected]="option === optionSelected ? true : null"
-          >
+          <option *ngFor="let option of optionsInFilter" [value]="option"
+            [attr.selected]="option === optionSelected ? true : null">
             {{ option }}
           </option>
         </select>
@@ -34,7 +31,7 @@
         <div>Score</div>
       </div>
       <div class="table">
-        <div *ngFor="let item of historyData">
+        <div *ngFor="let item of historyData | sortBy: sortByTimestampUP">
           <div>{{ item.timeStamp }}</div>
           <div>{{ item.action }}</div>
           <div>{{ item.timePlayed }}</div>

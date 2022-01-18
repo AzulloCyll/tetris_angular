@@ -9,7 +9,7 @@ import { LogData } from '../game.component';
 export class ModalComponent implements OnInit {
   constructor() {}
 
-  public sortByTimestampUP: boolean = false;
+  public sortByTimestampUP: boolean = true;
 
   public optionsInFilter: Array<string> = [];
   public optionSelected: string = 'All';
@@ -26,16 +26,6 @@ export class ModalComponent implements OnInit {
 
   public sortByTimestampHandler() {
     this.sortByTimestampUP = !this.sortByTimestampUP;
-
-    if (this.sortByTimestampUP) {
-      this.historyData = this.historyData.sort(
-        (a, b) => b.timeStamp - a.timeStamp
-      );
-    } else {
-      this.historyData = this.historyData.sort(
-        (a, b) => a.timeStamp - b.timeStamp
-      );
-    }
   }
 
   @Input() historyData: Array<LogData> = [];
