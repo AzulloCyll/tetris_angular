@@ -9,34 +9,26 @@ import { LogData } from '../game.component';
 export class ModalComponent implements OnInit {
   constructor() {}
 
+  @Input() historyData: Array<LogData> = [];
+  @Input() optionsInFilter: Array<string> = [];
+
+  @Output() handleModalVisibility: EventEmitter<boolean> = new EventEmitter();
+
   public sortByTimestampUP: boolean = true;
 
-  public optionsInFilter: Array<string> = [];
   public optionSelected: string = 'All';
-
-  private generateOptionsInFilter() {
-    let allOptions = this.historyData.map((item) => item.action);
-    this.optionsInFilter = [...new Set(allOptions)];
-    this.optionsInFilter.unshift('All'); //default option
-  }
 
   public filterByActionHandler($event: Event) {
     this.optionSelected = ($event.target as HTMLOptionElement).value;
-    console.log(this.optionSelected);
   }
 
   public sortByTimestampHandler() {
     this.sortByTimestampUP = !this.sortByTimestampUP;
   }
 
-  @Input() historyData: Array<LogData> = [];
-  @Output() handleModalVisibility: EventEmitter<boolean> = new EventEmitter();
-
   public backToGame() {
     this.handleModalVisibility.emit(true);
   }
 
-  ngOnInit(): void {
-    this.generateOptionsInFilter();
-  }
+  ngOnInit(): void {}
 }

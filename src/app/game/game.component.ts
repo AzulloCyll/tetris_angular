@@ -34,8 +34,10 @@ export class GameComponent implements OnInit {
   @Output() loginStatsuHandler: EventEmitter<Boolean> = new EventEmitter();
 
   @Input() player: Player = { name: '', email: '' };
+  @ViewChild(TetrisCoreComponent) private _tetris!: TetrisCoreComponent;
 
-  public isModalHidden: boolean = false;
+  public isModalHidden: boolean = true;
+  public optionsInFilter: Array<string> = [];
 
   //data to log
   public logDataObject: LogData = {
@@ -49,117 +51,63 @@ export class GameComponent implements OnInit {
 
   // TEST DATA
   historyData: Array<LogData> = [
-    {
-      action: 'Started game',
-      score: 0,
-      timePlayed: 0,
-      timeStamp: 1642500674305,
-    },
-    {
-      action: 'Started game',
-      score: 0,
-      timePlayed: 1,
-      timeStamp: 1642500681522,
-    },
-    {
-      action: 'Started game',
-      score: 0,
-      timePlayed: 6,
-      timeStamp: 1642500682750,
-    },
-    {
-      action: 'Started game',
-      score: 0,
-      timePlayed: 10,
-      timeStamp: 1642500688014,
-    },
-    {
-      action: 'Started game',
-      score: 0,
-      timePlayed: 12,
-      timeStamp: 1642500691598,
-    },
-    {
-      action: 'Started game',
-      score: 0,
-      timePlayed: 12,
-      timeStamp: 1642500693678,
-    },
-    {
-      action: 'Started game',
-      score: 0,
-      timePlayed: 16,
-      timeStamp: 1642500694054,
-    },
-    {
-      action: 'Started game',
-      score: 0,
-      timePlayed: 16,
-      timeStamp: 1642500697542,
-    },
-    {
-      action: 'Started game',
-      score: 0,
-      timePlayed: 18,
-      timeStamp: 1642500697862,
-    },
-    {
-      action: 'Started game',
-      score: 0,
-      timePlayed: 18,
-      timeStamp: 1642500700142,
-    },
-    {
-      action: 'Cleared line',
-      score: 1,
-      timePlayed: 20,
-      timeStamp: 1642500700342,
-    },
-    {
-      action: 'Cleared line',
-      score: 2,
-      timePlayed: 22,
-      timeStamp: 1642500701852,
-    },
-    {
-      action: 'Started game',
-      score: 2,
-      timePlayed: 27,
-      timeStamp: 1642500703646,
-    },
-    {
-      action: 'Cleared line',
-      score: 3,
-      timePlayed: 28,
-      timeStamp: 1642500708880,
-    },
-    {
-      action: 'Started game',
-      score: 3,
-      timePlayed: 36,
-      timeStamp: 1642500710381,
-    },
-    {
-      action: 'Paused game',
-      score: 3,
-      timePlayed: 39,
-      timeStamp: 1642500718104,
-    },
-    {
-      action: 'Started game',
-      score: 3,
-      timePlayed: 39,
-      timeStamp: 1642500721360,
-    },
-    {
-      action: 'Ends game',
-      score: 3,
-      timePlayed: 43,
-      timeStamp: 1642500722106,
-    },
+    // {
+    //   action: 'Ends game',
+    //   score: 5,
+    //   timePlayed: 53,
+    //   timeStamp: 1642511710746,
+    // },
+    // {
+    //   action: 'Cleared line',
+    //   score: 5,
+    //   timePlayed: 39,
+    //   timeStamp: 1642511703525,
+    // },
+    // {
+    //   action: 'Cleared line',
+    //   score: 4,
+    //   timePlayed: 32,
+    //   timeStamp: 1642511698774,
+    // },
+    // {
+    //   action: 'Cleared line',
+    //   score: 3,
+    //   timePlayed: 27,
+    //   timeStamp: 1642511696377,
+    // },
+    // {
+    //   action: 'Cleared line',
+    //   score: 2,
+    //   timePlayed: 25,
+    //   timeStamp: 1642511689222,
+    // },
+    // {
+    //   action: 'Cleared line',
+    //   score: 1,
+    //   timePlayed: 17,
+    //   timeStamp: 1642511675351,
+    // },
+    // {
+    //   action: 'Started game',
+    //   score: 0,
+    //   timePlayed: 4,
+    //   timeStamp: 1642511674151,
+    // },
+    // {
+    //   action: 'Paused game',
+    //   score: 0,
+    //   timePlayed: 4,
+    //   timeStamp: 1642511669753,
+    // },
+    // {
+    //   action: 'Started game',
+    //   score: 0,
+    //   timePlayed: 0,
+    //   timeStamp: 1642511668290,
+    // },
   ];
 
-  // used by timer
+  // TIMER
   timeoutId: number = 0;
   timerOn: boolean = false;
 
@@ -182,7 +130,14 @@ export class GameComponent implements OnInit {
     this.logDataObject.timePlayed = 0;
   }
 
+  // shows and hides history page
+  public handleModalVisibility($event: boolean) {
+    this.isModalHidden = $event;
+  }
+
+  // game controls
   public onButtonPressed($event: MouseEvent) {
+    $event.preventDefault();
     switch (($event.target as HTMLButtonElement).value) {
       case 'start':
         this._tetris.actionStart();
@@ -222,26 +177,55 @@ export class GameComponent implements OnInit {
     }
   }
 
-  //util
-  createTimestamp() {
-    this.logDataObject.timeStamp = Date.now();
+  public onLineCleared() {
+    this.logDataObject.score++;
+    this.logData('Cleared line');
   }
 
-  logData(action: string) {
+  public onGameOver() {
+    this.timerPause();
+    this.logDataObject.status = 'Game over';
+    this.logData('Ends game');
+    this.handleModalVisibility(false);
+    this.generateOptionsInFilter();
+  }
+
+  public onBackClick($event: MouseEvent) {
+    this.onPageBack.emit($event);
+    this.loginStatsuHandler.emit(false);
+  }
+
+  //utility functions
+  private logData(action: string) {
     let pushedObject: LogData = {
       action: action,
       score: this.logDataObject.score,
       timePlayed: this.logDataObject.timePlayed,
       timeStamp: this.logDataObject.timeStamp,
     };
-
     this.createTimestamp();
     this.historyData.push(pushedObject);
+  }
+
+  private createTimestamp() {
+    this.logDataObject.timeStamp = Date.now();
+  }
+
+  private generateOptionsInFilter() {
+    let allOptions = this.historyData.map((item) => item.action);
+    this.optionsInFilter = [...new Set(allOptions)];
+    this.optionsInFilter.unshift('All'); //default option
+  }
+
+  // uzyte onInit, przepisuje dane z 'player' z rodzica i zapisuje w danych
+  private handlePlayerName() {
+    this.logDataObject.name = this.player.name;
   }
 
   //hidden feature - WSAD/Arrows/Space controls
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent($event: KeyboardEvent) {
+    $event.preventDefault();
     switch ($event.code) {
       case 'KeyS':
       case 'ArrowDown':
@@ -259,36 +243,6 @@ export class GameComponent implements OnInit {
         this._tetris.actionRotate();
         break;
     }
-  }
-
-  public onLineCleared() {
-    this.logDataObject.score += 1;
-    this.logData('Cleared line');
-  }
-
-  public onGameOver() {
-    this.timerPause();
-    this.logDataObject.status = 'Game over';
-    this.logData('Ends game');
-    this.handleModalVisibility(false);
-    console.log(this.historyData);
-  }
-
-  public onBackClick($event: MouseEvent) {
-    this.onPageBack.emit($event);
-    this.loginStatsuHandler.emit(false);
-  }
-
-  @ViewChild(TetrisCoreComponent)
-  private _tetris!: TetrisCoreComponent;
-
-  // uzyte onInit, przepisuje dane z 'player' z rodzica i zapisuje w danych
-  handlePlayerName() {
-    this.logDataObject.name = this.player.name;
-  }
-
-  handleModalVisibility($event: boolean) {
-    this.isModalHidden = $event;
   }
 
   ngOnInit(): void {
