@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 interface Player {
   name: string;
@@ -10,7 +10,7 @@ interface Player {
   templateUrl: './intro.component.html',
   styleUrls: ['./intro.component.scss'],
 })
-export class IntroComponent implements OnInit {
+export class IntroComponent {
   @Output() loginStatsuHandler: EventEmitter<boolean> = new EventEmitter(); //potrzebne do uruchomienia przycisku GO TO GAME w app
   @Output() sendLoggedPlayer: EventEmitter<Player> = new EventEmitter(); //przesylam dane gracza do app
 
@@ -32,6 +32,4 @@ export class IntroComponent implements OnInit {
     this.loginStatsuHandler.emit(true);
     this.sendLoggedPlayer.emit(this.loggedPlayer);
   }
-
-  ngOnInit(): void {}
 }

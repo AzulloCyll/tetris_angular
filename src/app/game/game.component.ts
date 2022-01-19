@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   ViewChild,
   Output,
   EventEmitter,
@@ -25,7 +24,7 @@ export interface Player {
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'],
 })
-export class GameComponent implements OnInit {
+export class GameComponent {
   @Output() onPageBack: EventEmitter<MouseEvent> = new EventEmitter();
   @Output() loginStatsuHandler: EventEmitter<boolean> = new EventEmitter();
 
@@ -186,6 +185,4 @@ export class GameComponent implements OnInit {
     this.timerPause();
     this.timePlayed = 0;
   }
-
-  ngOnInit(): void {}
 }

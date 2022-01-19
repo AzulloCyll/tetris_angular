@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { LogData } from '../game.component';
 
 @Component({
@@ -6,7 +6,7 @@ import { LogData } from '../game.component';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent {
   @Input() historyData: Array<LogData> = [];
   @Input() optionsInFilter: Array<string> = [];
   @Input() score: number = 0;
@@ -27,6 +27,4 @@ export class ModalComponent implements OnInit {
   public backToGame() {
     this.handleModalVisibility.emit(true);
   }
-
-  ngOnInit(): void {}
 }
