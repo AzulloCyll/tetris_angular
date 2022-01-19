@@ -13,8 +13,8 @@
       type="text"
       name="name"
       id="name"
-      (keyup)="verifyLogin()"
       placeholder="Enter your name"
+      (keyup)="verifyLogin()"
       [(ngModel)]="loggedPlayer.name"
       [disabled]="disableInputs"
     />

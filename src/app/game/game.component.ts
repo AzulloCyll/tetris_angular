@@ -41,11 +41,11 @@ export class GameComponent implements OnInit {
   public timeStamp: number = 0;
 
   // TEST DATA
-  historyData: Array<LogData> = [];
+  public historyData: Array<LogData> = [];
 
   // timer initial data
-  timeoutId: number = 0;
-  timerOn: boolean = false;
+  private timeoutId: number = 0;
+  private timerOn: boolean = false;
 
   // shows and hides history page
   public handleModalVisibility($event: boolean) {

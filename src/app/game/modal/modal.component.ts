@@ -7,8 +7,6 @@ import { LogData } from '../game.component';
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit {
-  constructor() {}
-
   @Input() historyData: Array<LogData> = [];
   @Input() optionsInFilter: Array<string> = [];
   @Input() score: number = 0;
