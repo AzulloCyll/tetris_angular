@@ -12,17 +12,15 @@ interface Player {
   styleUrls: ['./intro.component.scss'],
 })
 export class IntroComponent {
-  @Output() loginStatsuHandler: EventEmitter<boolean> = new EventEmitter(); //potrzebne do uruchomienia przycisku GO TO GAME w app
-  @Output() sendLoggedPlayer: EventEmitter<string> = new EventEmitter(); //przesylam dane gracza do app
+  @Output() loginStatusHandler: EventEmitter<boolean> = new EventEmitter();
+  @Output() sendLoggedPlayer: EventEmitter<string> = new EventEmitter();
 
-  public disableInputs: boolean = false;
   public playerName: string = '';
 
   onSubmit() {
-    this.disableInputs = true;
-    this.loginStatsuHandler.emit(true);
     this.playerName = this.contactForm.value.name;
     this.sendLoggedPlayer.emit(this.playerName);
+    this.loginStatusHandler.emit(true);
   }
 
   contactForm = new FormGroup({

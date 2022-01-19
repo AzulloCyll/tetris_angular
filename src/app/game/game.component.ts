@@ -117,7 +117,8 @@ export class GameComponent {
   //back to intro page
   public onBackClick($event: MouseEvent) {
     this.onPageBack.emit($event);
-    this.loginStatsuHandler.emit(false);
+    //this.loginStatsuHandler.emit(false);
+    console.log('backciclk');
   }
 
   //utility functions

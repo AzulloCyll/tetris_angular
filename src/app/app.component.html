@@ -2,7 +2,7 @@
   <div class="center">
     <ng-container *ngIf="showPage === 'intro'">
       <app-intro
-        (loginStatsuHandler)="chanegeLoginStatus($event)"
+        (loginStatusHandler)="chanegeLoginStatus($event)"
         (sendLoggedPlayer)="getPlayerData($event)"
       >
       </app-intro>
