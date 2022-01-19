@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 interface Player {
   name: string;
@@ -12,24 +13,27 @@ interface Player {
 })
 export class IntroComponent {
   @Output() loginStatsuHandler: EventEmitter<boolean> = new EventEmitter(); //potrzebne do uruchomienia przycisku GO TO GAME w app
-  @Output() sendLoggedPlayer: EventEmitter<Player> = new EventEmitter(); //przesylam dane gracza do app
+  @Output() sendLoggedPlayer: EventEmitter<string> = new EventEmitter(); //przesylam dane gracza do app
 
   public disableInputs: boolean = false;
-  public loginButtonEnable: boolean = false;
-  public loggedPlayer: Player = { name: '', email: '' };
+  public playerName: string = '';
 
-  public verifyLogin() {
-    if (this.loggedPlayer.name && this.loggedPlayer.email) {
-      this.loginButtonEnable = true;
-    } else {
-      this.loginButtonEnable = false;
-    }
-  }
-
-  public signIn() {
-    this.loginButtonEnable = false;
+  onSubmit() {
     this.disableInputs = true;
     this.loginStatsuHandler.emit(true);
-    this.sendLoggedPlayer.emit(this.loggedPlayer);
+    this.playerName = this.contactForm.value.name;
+    this.sendLoggedPlayer.emit(this.playerName);
+  }
+
+  contactForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+  });
+
+  get name() {
+    return this.contactForm.get('name');
+  }
+  get email() {
+    return this.contactForm.get('email');
   }
 }

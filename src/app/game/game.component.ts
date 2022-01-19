@@ -15,10 +15,7 @@ export interface LogData {
   score: number;
   action: string;
 }
-export interface Player {
-  name: string;
-  email: string;
-}
+
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -28,7 +25,7 @@ export class GameComponent {
   @Output() onPageBack: EventEmitter<MouseEvent> = new EventEmitter();
   @Output() loginStatsuHandler: EventEmitter<boolean> = new EventEmitter();
 
-  @Input() player: Player = { name: '', email: '' };
+  @Input() playerName: string = '';
   @ViewChild(TetrisCoreComponent) private _tetris!: TetrisCoreComponent;
 
   // te zmienne są inputami w modal
@@ -66,8 +63,6 @@ export class GameComponent {
         this.status = 'Playing';
         this.timerStart();
         this.logData('Started game');
-        console.log(this.player);
-
         ($event.target as HTMLButtonElement).blur();
         break;
       case 'stop':

@@ -7,17 +7,21 @@
     You know the rules!
   </p>
 
-  <form class="form">
+  <form class="form" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
     <label for="name">Your name:</label>
     <input
       type="text"
       name="name"
       id="name"
       placeholder="Enter your name"
-      (keyup)="verifyLogin()"
-      [(ngModel)]="loggedPlayer.name"
-      [disabled]="disableInputs"
+      formControlName="name"
     />
+    <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert">
+      <div *ngIf="name?.errors?.['required']">Name is required</div>
+      <div *ngIf="name?.errors?.['minlength']">
+        Name must be at least 2 characters long
+      </div>
+    </div>
 
     <label for="email">Your e-mail:</label>
     <input
@@ -25,13 +29,16 @@
       name="email"
       id="email"
       placeholder="Enter your e-mail"
-      (keyup)="verifyLogin()"
-      [(ngModel)]="loggedPlayer.email"
-      [disabled]="disableInputs"
+      formControlName="email"
     />
+    <div
+      *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+      class="alert"
+    >
+      <div *ngIf="email?.errors?.['required']">e-mail is required</div>
+      <div *ngIf="email?.errors?.['email']">e-mail is invalid</div>
+    </div>
 
-    <button type="button" (click)="signIn()" [disabled]="!loginButtonEnable">
-      Sign in
-    </button>
+    <button type="submit" [disabled]="!contactForm.valid">Sign in</button>
   </form>
 </div>

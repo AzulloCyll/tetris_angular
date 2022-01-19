@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Player } from './game/game.component';
 
 @Component({
   selector: 'app-root',
@@ -11,15 +10,14 @@ export class AppComponent {
   public showPage: string = 'intro'; //change pages - intro/game
 
   public isLogged: boolean = false;
-  public player: Player = { name: '', email: '' };
+  public playerName: string = '';
 
   public changePage($event: MouseEvent) {
     this.showPage = ($event.target as HTMLButtonElement).value;
   }
 
-  public getPlayerData($event: Player) {
-    this.player.name = $event.name;
-    this.player.email = $event.email;
+  public getPlayerData($event: string) {
+    this.playerName = $event;
   }
 
   public chanegeLoginStatus($event: boolean) {
