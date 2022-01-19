@@ -11,16 +11,14 @@ import { TetrisCoreComponent } from 'ngx-tetris';
 import { HostListener } from '@angular/core'; //for keayboard controls
 
 export interface LogData {
-  name?: String;
   timePlayed: number;
   timeStamp: number;
-  status?: String;
   score: number;
   action: string;
 }
 export interface Player {
-  name: String;
-  email: String;
+  name: string;
+  email: string;
 }
 @Component({
   selector: 'app-game',
@@ -29,7 +27,7 @@ export interface Player {
 })
 export class GameComponent implements OnInit {
   @Output() onPageBack: EventEmitter<MouseEvent> = new EventEmitter();
-  @Output() loginStatsuHandler: EventEmitter<Boolean> = new EventEmitter();
+  @Output() loginStatsuHandler: EventEmitter<boolean> = new EventEmitter();
 
   @Input() player: Player = { name: '', email: '' };
   @ViewChild(TetrisCoreComponent) private _tetris!: TetrisCoreComponent;
@@ -38,22 +36,14 @@ export class GameComponent implements OnInit {
   public isModalHidden: boolean = true;
   public optionsInFilter: Array<string> = [];
   public score: number = 0;
+  public status: string = 'Ready';
   public timePlayed: number = 0;
-
-  //data to log
-  public logDataObject: LogData = {
-    action: '',
-    name: this.player.name,
-    score: 0,
-    status: 'Ready',
-    timePlayed: 0,
-    timeStamp: 0,
-  };
+  public timeStamp: number = 0;
 
   // TEST DATA
   historyData: Array<LogData> = [];
 
-  // timer data
+  // timer initial data
   timeoutId: number = 0;
   timerOn: boolean = false;
 
@@ -74,7 +64,7 @@ export class GameComponent implements OnInit {
     switch (($event.target as HTMLButtonElement).value) {
       case 'start':
         this._tetris.actionStart();
-        this.logDataObject.status = 'Playing';
+        this.status = 'Playing';
         this.timerStart();
         this.logData('Started game');
         console.log(this.player);
@@ -83,7 +73,7 @@ export class GameComponent implements OnInit {
         break;
       case 'stop':
         this._tetris.actionStop();
-        this.logDataObject.status = 'Paused';
+        this.status = 'Paused';
         this.timerPause();
         this.logData('Paused game');
         ($event.target as HTMLButtonElement).blur();
@@ -91,7 +81,7 @@ export class GameComponent implements OnInit {
       case 'reset':
         this._tetris.actionReset();
         this._tetris.actionStop();
-        this.logDataObject.status = 'Ready';
+        this.status = 'Ready';
         this.timerReset();
         this.logData('Restarted game');
         ($event.target as HTMLButtonElement).blur();
@@ -117,12 +107,12 @@ export class GameComponent implements OnInit {
 
   //game events
   public onLineCleared() {
-    this.logDataObject.score++;
+    this.score++;
     this.logData('Cleared line');
   }
   public onGameOver() {
     this.timerPause();
-    this.logDataObject.status = 'Game over';
+    this.status = 'Game over';
     this.logData('Ends game');
 
     this.generateOptionsInFilter();
@@ -139,17 +129,16 @@ export class GameComponent implements OnInit {
   //utility functions
   private logData(action: string) {
     this.createTimestamp();
-    let pushedObject: LogData = {
+    this.historyData.push({
       action: action,
-      score: this.logDataObject.score,
-      timePlayed: this.logDataObject.timePlayed,
-      timeStamp: this.logDataObject.timeStamp,
-    };
-    this.historyData.push(pushedObject);
+      score: this.score,
+      timePlayed: this.timePlayed,
+      timeStamp: this.timeStamp,
+    });
   }
 
   private createTimestamp() {
-    this.logDataObject.timeStamp = Date.now();
+    this.timeStamp = Date.now();
   }
 
   private generateOptionsInFilter() {
@@ -185,7 +174,7 @@ export class GameComponent implements OnInit {
     if (!this.timerOn) {
       this.timerOn = true;
       this.timeoutId = window.setInterval(() => {
-        this.logDataObject.timePlayed++;
+        this.timePlayed++;
       }, 1000);
     }
   }
@@ -195,7 +184,7 @@ export class GameComponent implements OnInit {
   }
   private timerReset() {
     this.timerPause();
-    this.logDataObject.timePlayed = 0;
+    this.timePlayed = 0;
   }
 
   ngOnInit(): void {}

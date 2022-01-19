@@ -11,7 +11,7 @@ interface Player {
   styleUrls: ['./intro.component.scss'],
 })
 export class IntroComponent implements OnInit {
-  @Output() loginStatsuHandler: EventEmitter<Boolean> = new EventEmitter(); //potrzebne do uruchomienia przycisku GO TO GAME w app
+  @Output() loginStatsuHandler: EventEmitter<boolean> = new EventEmitter(); //potrzebne do uruchomienia przycisku GO TO GAME w app
   @Output() sendLoggedPlayer: EventEmitter<Player> = new EventEmitter(); //przesylam dane gracza do app
 
   public disableInputs: boolean = false;
@@ -19,7 +19,6 @@ export class IntroComponent implements OnInit {
   public loggedPlayer: Player = { name: '', email: '' };
 
   public verifyLogin() {
-    //weryfikacja
     if (this.loggedPlayer.name && this.loggedPlayer.email) {
       this.loginButtonEnable = true;
     } else {
@@ -28,7 +27,6 @@ export class IntroComponent implements OnInit {
   }
 
   public signIn() {
-    // console.log(this.loggedPlayer);
     this.loginButtonEnable = false;
     this.disableInputs = true;
     this.loginStatsuHandler.emit(true);
