@@ -22,7 +22,6 @@ export class AppComponent {
   }
 
   public chanegeLoginStatus($event: boolean) {
-    console.log($event);
     this.isLogged = $event;
   }
 }
