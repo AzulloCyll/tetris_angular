@@ -1,7 +1,11 @@
 <main>
   <div class="center">
     <ng-container *ngIf="showPage === 'intro'">
-      <app-intro (loginStatusHandler)="chanegeLoginStatus($event)"> </app-intro>
+      <app-intro
+        (loginStatusHandler)="chanegeLoginStatus($event)"
+        (sendLoggedPlayer)="getPlayerData($event)"
+      >
+      </app-intro>
       <hr />
       <button
         class="start-button"
@@ -15,9 +19,8 @@
 
     <app-game
       *ngIf="showPage === 'game'"
-      (showPage)="changePage($event)"
+      (onPageBack)="changePage($event)"
       [playerName]="playerName"
-    >
-    </app-game>
+    ></app-game>
   </div>
 </main>
