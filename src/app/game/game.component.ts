@@ -23,7 +23,7 @@ export interface LogData {
 })
 export class GameComponent {
   @Output() onPageBack: EventEmitter<MouseEvent> = new EventEmitter();
-  @Output() loginStatsuHandler: EventEmitter<boolean> = new EventEmitter();
+  @Output() loginStatusHandler: EventEmitter<boolean> = new EventEmitter();
 
   @Input() playerName: string = '';
   @ViewChild(TetrisCoreComponent) private _tetris!: TetrisCoreComponent;
@@ -117,11 +117,7 @@ export class GameComponent {
   //back to intro page
   public onBackClick($event: MouseEvent) {
     this.onPageBack.emit($event);
-    this.loginStatsuHandler.emit(true);
-  }
-
-  public disableButton(value: boolean) {
-    this.loginStatsuHandler.emit(value);
+    this.loginStatusHandler.emit(false);
   }
 
   //utility functions
