@@ -39,6 +39,13 @@
       <div *ngIf="email?.errors?.['email']">e-mail is invalid</div>
     </div>
 
-    <button type="submit" [disabled]="!contactForm.valid">Sign in</button>
+    <button
+      type="submit"
+      [disabled]="
+        (!contactForm.valid && !isLogged) || (contactForm.valid && isLogged)
+      "
+    >
+      Sign in
+    </button>
   </form>
 </div>

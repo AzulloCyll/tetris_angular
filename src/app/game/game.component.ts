@@ -117,8 +117,11 @@ export class GameComponent {
   //back to intro page
   public onBackClick($event: MouseEvent) {
     this.onPageBack.emit($event);
-    //this.loginStatsuHandler.emit(false);
-    console.log('backciclk');
+    this.loginStatsuHandler.emit(true);
+  }
+
+  public disableButton(value: boolean) {
+    this.loginStatsuHandler.emit(value);
   }
 
   //utility functions
