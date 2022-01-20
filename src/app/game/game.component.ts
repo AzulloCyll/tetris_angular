@@ -22,8 +22,7 @@ export interface LogData {
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent {
-  @Output() onPageBack: EventEmitter<MouseEvent> = new EventEmitter();
-  @Output() loginStatsuHandler: EventEmitter<boolean> = new EventEmitter();
+  @Output() showPage: EventEmitter<MouseEvent> = new EventEmitter();
 
   @Input() playerName: string = '';
   @ViewChild(TetrisCoreComponent) private _tetris!: TetrisCoreComponent;
@@ -46,6 +45,13 @@ export class GameComponent {
   // shows and hides history page
   public handleModalVisibility($event: boolean) {
     this.isModalHidden = $event;
+  }
+
+  //back to intro page
+  public backToIntroHandler($event: MouseEvent) {
+    console.log(this.showPage);
+
+    this.showPage.emit($event);
   }
 
   public countScoreAndTimePlayed() {
@@ -112,11 +118,6 @@ export class GameComponent {
     this.generateOptionsInFilter();
     this.countScoreAndTimePlayed();
     this.handleModalVisibility(false);
-  }
-
-  //back to intro page
-  public onBackClick($event: MouseEvent) {
-    this.onPageBack.emit($event);
   }
 
   //utility functions

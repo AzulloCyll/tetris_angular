@@ -14,7 +14,6 @@ export class AppComponent {
 
   public changePage($event: MouseEvent) {
     this.showPage = ($event.target as HTMLButtonElement).value;
-    this.isLogged = false;
   }
 
   public getPlayerData($event: string) {

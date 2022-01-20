@@ -15,7 +15,7 @@
 
     <app-game
       *ngIf="showPage === 'game'"
-      (onPageBack)="changePage($event)"
+      (showPage)="changePage($event)"
       [playerName]="playerName"
     ></app-game>
   </div>

@@ -19,7 +19,6 @@ export class IntroComponent {
 
   onSubmit() {
     this.playerName = this.contactForm.value.name;
-    this.sendLoggedPlayer.emit(this.playerName);
     this.loginStatusHandler.emit(true);
   }
 
