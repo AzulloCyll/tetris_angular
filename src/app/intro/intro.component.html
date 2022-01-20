@@ -8,35 +8,52 @@
   </p>
 
   <form class="form" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-    <label for="name">Your name:</label>
-    <input
-      type="text"
-      name="name"
-      id="name"
-      placeholder="Enter your name"
-      formControlName="name"
-    />
-    <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert">
-      <div *ngIf="name?.errors?.['required']">Name is required</div>
-      <div *ngIf="name?.errors?.['minlength']">
-        Name must be at least 2 characters long
+    <div class="input-container">
+      <label for="name">Your name:</label>
+
+      <input
+        type="text"
+        name="name"
+        id="name"
+        placeholder="Enter your name"
+        formControlName="name"
+      />
+      <div
+        *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+        class="alert"
+      >
+        <div *ngIf="name?.errors?.['required']">Name is required</div>
+        <div *ngIf="name?.errors?.['minlength']">
+          Name must be at least 2 characters long
+        </div>
+      </div>
+      <div *ngIf="name?.valid && (name?.dirty || name?.touched)" class="valid">
+        <div>Name is valid</div>
       </div>
     </div>
 
-    <label for="email">Your e-mail:</label>
-    <input
-      type="email"
-      name="email"
-      id="email"
-      placeholder="Enter your e-mail"
-      formControlName="email"
-    />
-    <div
-      *ngIf="email?.invalid && (email?.dirty || email?.touched)"
-      class="alert"
-    >
-      <div *ngIf="email?.errors?.['required']">e-mail is required</div>
-      <div *ngIf="email?.errors?.['email']">e-mail is invalid</div>
+    <div class="input-container">
+      <label for="email">Your e-mail:</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="Enter your e-mail"
+        formControlName="email"
+      />
+      <div
+        *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+        class="alert"
+      >
+        <div *ngIf="email?.errors?.['required']">e-mail is required</div>
+        <div *ngIf="email?.errors?.['email']">e-mail is invalid</div>
+      </div>
+      <div
+        *ngIf="email?.valid && (email?.dirty || email?.touched)"
+        class="valid"
+      >
+        <div>e-mail is valid</div>
+      </div>
     </div>
 
     <button

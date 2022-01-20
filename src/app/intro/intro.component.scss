@@ -12,28 +12,46 @@
     }
   }
   & .form {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    & label {
-      color: rgb(119, 119, 119);
-      text-align: left;
-      margin-bottom: 5px;
-    }
-    & input {
-      padding: 10px 15px;
-      margin-bottom: 10px;
-      width: 50%;
-      border-radius: 5px;
-      border: 1px solid grey;
-      &:disabled {
-        background-color: fixed;
-        color: lightgrey;
-        border: 1px solid lightgrey;
+    & .input-container {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      & label {
+        display: block;
+        color: rgb(119, 119, 119);
+        text-align: left;
+        margin-bottom: 5px;
+      }
+      & input {
+        padding: 10px 15px;
+        margin-bottom: 10px;
+        width: 50%;
+        border-radius: 5px;
+        border: 1px solid grey;
+        margin-bottom: 40px;
+        &:disabled {
+          background-color: fixed;
+          color: lightgrey;
+          border: 1px solid lightgrey;
+        }
+      }
+      & .alert {
+        display: block;
+        position: absolute;
+        color: red;
+        top: 65px;
+      }
+      & .valid {
+        display: block;
+        position: absolute;
+        color: green;
+        top: 65px;
       }
     }
+
     & button {
       background-color: darkorange;
       color: white;
