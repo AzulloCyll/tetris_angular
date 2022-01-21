@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { LogData } from '../game.component';
+import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-modal',
@@ -7,6 +8,9 @@ import { LogData } from '../game.component';
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent {
+  faAngleUp = faAngleUp;
+  faAngleDown = faAngleDown;
+
   @Input() historyData: Array<LogData> = [];
   @Input() optionsInFilter: Array<string> = [];
   @Input() score: number = 0;

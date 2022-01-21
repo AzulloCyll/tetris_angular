@@ -50,7 +50,7 @@ export class GameComponent {
   @ViewChild(TetrisCoreComponent) private _tetris!: TetrisCoreComponent;
 
   // te zmienne są inputami w modal
-  public isModalHidden: boolean = true;
+  public isModalHidden: boolean = false;
   public optionsInFilter: Array<string> = [];
   public score: number = 0;
   public status: string = 'Ready';

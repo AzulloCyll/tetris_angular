@@ -12,7 +12,9 @@
       <nav>
         Sort by:
         <button (click)="sortByTimestampHandler()">
-          {{ sortByTimestampUP ? "Timestamp 321" : "Timestamp 123" }}
+          <fa-icon *ngIf="sortByTimestampUP" [icon]="faAngleUp"></fa-icon>
+          <fa-icon *ngIf="!sortByTimestampUP" [icon]="faAngleDown"></fa-icon>
+          Timestamp
         </button>
         Filter by action type:
         <select (change)="filterByActionHandler($event)">
