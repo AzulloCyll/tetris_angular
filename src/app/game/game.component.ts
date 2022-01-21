@@ -8,6 +8,17 @@ import {
 
 import { TetrisCoreComponent } from 'ngx-tetris';
 import { HostListener } from '@angular/core'; //for keayboard controls
+import {
+  faArrowLeft,
+  faArrowRight,
+  faArrowUp,
+  faArrowDown,
+  faUndo,
+  faSyncAlt,
+  faPlay,
+  faPause,
+  faSignOutAlt,
+} from '@fortawesome/free-solid-svg-icons';
 
 export interface LogData {
   timePlayed: number;
@@ -22,6 +33,16 @@ export interface LogData {
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent {
+  faArrowLeft = faArrowLeft;
+  faArrowRight = faArrowRight;
+  faArrowUp = faArrowUp;
+  faArrowDown = faArrowDown;
+  faUndo = faUndo;
+  faSyncAlt = faSyncAlt;
+  faPlay = faPlay;
+  faPause = faPause;
+  faSignOutAlt = faSignOutAlt;
+
   @Output() onPageBack: EventEmitter<MouseEvent> = new EventEmitter();
   @Output() loginStatusHandler: EventEmitter<boolean> = new EventEmitter();
 

@@ -1,7 +1,7 @@
 main {
   width: 100%;
   display: block;
-  min-height: 700px;
+  min-height: 750px;
   overflow: auto;
   & .center {
     border-radius: 7px;
@@ -31,6 +31,7 @@ main {
       margin-top: 50px;
       margin-bottom: 30px;
       transition: all 0.3s ease-in;
+      box-shadow: rgb(0 0 0 / 45%) 0px 25px 20px -20px;
       &:hover {
         background-color: #ff4d00;
       }
@@ -38,6 +39,7 @@ main {
         cursor: auto;
         background-color: silver;
         color: grey;
+        box-shadow: none;
       }
     }
     & hr {

@@ -1,11 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-interface Player {
-  name: string;
-  email: string;
-}
-
 @Component({
   selector: 'app-intro',
   templateUrl: './intro.component.html',

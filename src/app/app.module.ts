@@ -13,6 +13,8 @@ import { TetrisCoreModule } from 'ngx-tetris'; // game core
 import { SortByPipe } from './sort-by.pipe';
 import { FilterByActionPipe } from './filter-by-action.pipe';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,13 @@ import { FilterByActionPipe } from './filter-by-action.pipe';
     SortByPipe,
     FilterByActionPipe,
   ],
-  imports: [BrowserModule, TetrisCoreModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    TetrisCoreModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FontAwesomeModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -34,24 +34,26 @@
         (click)="onButtonPressed($event)"
         [class.disabled]="status === 'Playing'"
       >
-        Start
+        <fa-icon [icon]="faPlay"></fa-icon> Start
       </button>
       <ng-template #paused>
-        <button value="start" (click)="onButtonPressed($event)">Resume</button>
+        <button value="start" (click)="onButtonPressed($event)">
+          <fa-icon [icon]="faPlay"></fa-icon> Resume
+        </button>
       </ng-template>
       <button
         value="stop"
         (click)="onButtonPressed($event)"
         [class.disabled]="status === 'Paused' || status === 'Ready'"
       >
-        Pause
+        <fa-icon [icon]="faPause"></fa-icon> Pause
       </button>
       <button
         value="reset"
         (click)="onButtonPressed($event)"
         [class.disabled]="status === 'Ready'"
       >
-        Reset
+        <fa-icon [icon]="faSyncAlt"></fa-icon> Reset
       </button>
     </div>
 
@@ -60,21 +62,28 @@
       <div class="row">
         <div class="directions">
           <button type="button" value="left" (click)="onButtonPressed($event)">
-            Left
+            <fa-icon [icon]="faArrowLeft"></fa-icon> Left
           </button>
-          <button value="right" (click)="onButtonPressed($event)">Right</button>
+          <button value="right" (click)="onButtonPressed($event)">
+            <fa-icon [icon]="faArrowRight"></fa-icon> Right
+          </button>
         </div>
-        <button value="down" (click)="onButtonPressed($event)">Down</button>
+        <button value="down" (click)="onButtonPressed($event)">
+          <fa-icon [icon]="faArrowDown"></fa-icon> Down
+        </button>
       </div>
 
       <div class="rotate">
-        <button value="rotate" (click)="onButtonPressed($event)">Rotate</button>
+        <button value="rotate" (click)="onButtonPressed($event)">
+          <fa-icon [icon]="faUndo"></fa-icon> Rotate
+        </button>
       </div>
     </div>
 
     <hr />
     <button class="intro" value="intro" (click)="onBackClick($event)">
-      Logout & back to intro
+      <fa-icon [icon]="faSignOutAlt" [rotate]="180"></fa-icon> Logout & back to
+      intro
     </button>
   </div>
 </div>
