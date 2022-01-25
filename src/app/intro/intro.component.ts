@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-intro',
@@ -15,20 +15,9 @@ export class IntroComponent {
 
   onSubmit() {
     this.isLogged = true;
-    this.playerName = this.contactForm.value.name;
+    // this.playerName = this.contactForm.value.name;
     this.sendLoggedPlayer.emit(this.playerName);
     this.loginStatusHandler.emit(true);
   }
 
-  contactForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-  });
-
-  get name() {
-    return this.contactForm.get('name');
-  }
-  get email() {
-    return this.contactForm.get('email');
-  }
 }
