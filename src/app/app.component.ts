@@ -9,7 +9,7 @@ export class AppComponent {
   title = 'ngZal';
   public showPage: string = 'intro'; //change pages - intro/game
 
-  public isLogged: Boolean = false;
+  public isLogged: boolean = false;
   public playerName: string = '';
 
   public changePage($event: MouseEvent) {
