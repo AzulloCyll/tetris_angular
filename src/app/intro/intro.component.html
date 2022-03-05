@@ -91,5 +91,15 @@
     </div>
 
     <button type="submit" [disabled]="!loginForm.valid">Sign in</button>
+
+    <hr />
+    <button
+      class="start-button"
+      value="game"
+      [disabled]="!isLogged"
+      [routerLink]="['/game']"
+    >
+      go to game
+    </button>
   </form>
 </div>

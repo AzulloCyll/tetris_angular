@@ -1,27 +1,5 @@
 <main>
-	<div class="center">
-		<ng-container *ngIf="showPage === 'intro'">
-			<app-intro
-				(loginStatusHandler)="chanegeLoginStatus($event)"
-				(sendLoggedPlayer)="getPlayerData($event)"
-			>
-			</app-intro>
-			<hr />
-			<button
-				class="start-button"
-				value="game"
-				(click)="changePage($event)"
-				[disabled]="!isLogged"
-			>
-				go to game
-			</button>
-		</ng-container>
-		<app-game
-			*ngIf="showPage === 'game'"
-			(onPageBack)="changePage($event)"
-			[playerName]="playerName"
-			(loginStatusHandler)="chanegeLoginStatus($event)"
-		>
-		</app-game>
-	</div>
+  <div class="center">
+    <router-outlet></router-outlet>
+  </div>
 </main>

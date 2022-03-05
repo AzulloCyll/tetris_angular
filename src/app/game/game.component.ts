@@ -1,13 +1,8 @@
-import {
-  Component,
-  ViewChild,
-  Output,
-  EventEmitter,
-  Input,
-} from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 import { TetrisCoreComponent } from 'ngx-tetris';
 import { HostListener } from '@angular/core'; //for keayboard controls
+import { Location } from '@angular/common';
 import {
   faArrowLeft,
   faArrowRight,
@@ -33,6 +28,8 @@ export interface LogData {
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent {
+  constructor(private _location: Location) {}
+
   faArrowLeft = faArrowLeft;
   faArrowRight = faArrowRight;
   faArrowUp = faArrowUp;
@@ -43,11 +40,13 @@ export class GameComponent {
   faPause = faPause;
   faSignOutAlt = faSignOutAlt;
 
-  @Output() onPageBack: EventEmitter<MouseEvent> = new EventEmitter();
-  @Output() loginStatusHandler: EventEmitter<boolean> = new EventEmitter();
-
-  @Input() playerName: string = '';
   @ViewChild(TetrisCoreComponent) private _tetris!: TetrisCoreComponent;
+
+  public playerName: String = 'tet';
+
+  goBack() {
+    this._location.back();
+  }
 
   // te zmienne są inputami w modal
   public isModalHidden: boolean = true;
@@ -133,12 +132,6 @@ export class GameComponent {
     this.generateOptionsInFilter();
     this.countScoreAndTimePlayed();
     this.handleModalVisibility(false);
-  }
-
-  //back to intro page
-  public onBackClick($event: MouseEvent) {
-    this.onPageBack.emit($event);
-    this.loginStatusHandler.emit(false);
   }
 
   //utility functions

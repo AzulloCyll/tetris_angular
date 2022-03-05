@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,15 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  constructor(private _router: Router) {}
+
   title = 'ngZal';
-  public showPage: string = 'intro'; //change pages - intro/game
 
   public isLogged: boolean = false;
   public playerName: string = '';
-
-  public changePage($event: MouseEvent) {
-    this.showPage = ($event.target as HTMLButtonElement).value;
-  }
 
   public getPlayerData($event: string) {
     this.playerName = $event;
