@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { TetrisCoreComponent } from 'ngx-tetris';
 import { HostListener } from '@angular/core'; //for keayboard controls
 import { Location } from '@angular/common';
+import { StorageService } from '../storage.service';
 import {
   faArrowLeft,
   faArrowRight,
@@ -28,7 +29,9 @@ export interface LogData {
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent {
-  constructor(private _location: Location) {}
+  constructor(private _location: Location, private _storage: StorageService) {
+    this.playerName = this._storage.readPlayerName;
+  }
 
   faArrowLeft = faArrowLeft;
   faArrowRight = faArrowRight;
