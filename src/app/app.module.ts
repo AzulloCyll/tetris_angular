@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { TetrisCoreModule } from 'ngx-tetris'; // game core
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
 
 //pipes
 import { SortByPipe } from './sort-by.pipe';
@@ -16,6 +17,7 @@ import { IntroComponent } from './intro/intro.component';
 import { GameComponent } from './game/game.component';
 import { ModalComponent } from './game/modal/modal.component';
 import { RouterModule } from '@angular/router';
+import { Modal2Component } from './game/modal2/modal2.component';
 
 @NgModule({
   declarations: [
@@ -25,17 +27,19 @@ import { RouterModule } from '@angular/router';
     ModalComponent,
     SortByPipe,
     FilterByActionPipe,
+    Modal2Component,
   ],
   imports: [
     FormsModule,
     RouterModule.forRoot([
       { path: 'game', component: GameComponent },
       { path: 'intro', component: IntroComponent },
-      { path: '**', redirectTo: 'intro' },
+      { path: '**', redirectTo: 'game' },
     ]),
     BrowserModule,
     TetrisCoreModule,
     FontAwesomeModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

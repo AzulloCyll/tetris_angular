@@ -45,11 +45,13 @@ export class GameComponent {
 
   @ViewChild(TetrisCoreComponent) private _tetris!: TetrisCoreComponent;
 
-  public playerName: String = 'tet';
+  public playerName: String;
 
   goBack() {
     this._location.back();
   }
+
+  public isModal2Hidden: boolean = false;
 
   // te zmienne są inputami w modal
   public isModalHidden: boolean = true;
@@ -69,6 +71,10 @@ export class GameComponent {
   // shows and hides history page
   public handleModalVisibility($event: boolean) {
     this.isModalHidden = $event;
+  }
+
+  public handleModal2Visibility() {
+    this.isModal2Hidden = false;
   }
 
   public countScoreAndTimePlayed() {

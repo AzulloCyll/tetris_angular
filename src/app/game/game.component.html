@@ -14,9 +14,15 @@
       <div>{{ playerName }}</div>
     </div>
     <div class="score">
-      <h2>score</h2>
+      <h2>
+        score
+        <button type="button" (click)="handleModal2Visibility()">
+          Highscores
+        </button>
+      </h2>
       <div>{{ score }}</div>
     </div>
+
     <div class="time">
       <h2>time</h2>
       <div>{{ timePlayed }}</div>
@@ -95,3 +101,4 @@
   [timePlayed]="timePlayed"
   [score]="score"
 ></app-modal>
+<app-modal2 [class.hidden]="isModal2Hidden"></app-modal2>
