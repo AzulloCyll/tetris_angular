@@ -1,3 +1,26 @@
 <div class="modal2">
-  <div class="center">test</div>
+  <div class="center">
+    <h2>High Scores</h2>
+    <nav>
+      <button
+        type="button"
+        [class.selected]="sortDirectionDown"
+        (click)="changeSortingDirection('up')"
+      >
+        Sort Up
+      </button>
+      <button
+        type="button"
+        [class.selected]="!sortDirectionDown"
+        (click)="changeSortingDirection('down')"
+      >
+        Sort Down
+      </button>
+    </nav>
+    <div *ngFor="let item of dataToShow | sortByScore: sortDirectionDown">
+      <div class="hiscore">
+        <span>{{ item.name }}: </span><span>{{ item.score }}</span>
+      </div>
+    </div>
+  </div>
 </div>

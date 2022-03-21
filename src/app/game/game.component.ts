@@ -45,7 +45,7 @@ export class GameComponent {
 
   @ViewChild(TetrisCoreComponent) private _tetris!: TetrisCoreComponent;
 
-  public playerName: String;
+  public playerName: string;
 
   goBack() {
     this._location.back();

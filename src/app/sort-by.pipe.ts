@@ -5,7 +5,10 @@ import { LogData } from './game/game.component';
   name: 'sortBy',
 })
 export class SortByPipe implements PipeTransform {
-  transform(items: Array<LogData>, sortByTimestampUP: boolean): Array<LogData> {
+  transform(
+    items: Array<LogData>,
+    sortByTimestampUP?: boolean
+  ): Array<LogData> {
     if (sortByTimestampUP) {
       return items.sort((a, b) => a.timeStamp - b.timeStamp);
     } else {

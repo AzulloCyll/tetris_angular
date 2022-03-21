@@ -1,4 +1,5 @@
 .modal2 {
+  font-family: Lato, sans-serif;
   position: absolute;
   left: 0;
   right: 0;
@@ -16,5 +17,27 @@
     margin-top: 50px;
     text-align: center;
     border-radius: 7px;
+    & div span {
+      padding: 5px;
+      width: 45%;
+      color: black;
+      display: block;
+      float: left;
+    }
+    & div span:first-child {
+      text-align: right;
+    }
+    & div span:last-child {
+      text-align: left;
+    }
+    & nav {
+      display: block;
+      & button {
+        margin: 10px;
+        &.selected {
+          color: red;
+        }
+      }
+    }
   }
 }
