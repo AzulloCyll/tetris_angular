@@ -12,9 +12,13 @@ export class HiscoresService {
   load() {
     const URL = 'http://localhost:55000/tetris';
     return this._http.get<Array<hiScoresData>>(URL, {
-      headers: {
-        accept: 'application/json',
-      },
+      headers: { accept: 'application/json' },
     });
+  }
+
+  check(token: string) {
+    const URL = 'http://localhost:55000/check-token';
+    const body = { 'auth-token': token };
+    return this._http.post(URL, body);
   }
 }

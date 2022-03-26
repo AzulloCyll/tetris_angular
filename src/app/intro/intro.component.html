@@ -1,5 +1,5 @@
 <div class="center">
-  <h2>Welcome to ngSnake</h2>
+  <h2>Welcome to ngTetris</h2>
 
   <p>
     Sign in and click GO TO GAME<br />
@@ -14,7 +14,7 @@
         ngModel
         #nameInput="ngModel"
         required
-        type="email"
+        type="text"
         name="name"
         id="name"
         placeholder="Enter your name"
@@ -52,40 +52,31 @@
     </div>
 
     <div class="input-container">
-      <label for="email">Your e-mail:</label>
+      <label for="secret">Secret code:</label>
       <input
         ngModel
-        #emailInput="ngModel"
+        #secretInput="ngModel"
         required
-        pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
-        type="email"
-        name="email"
-        id="email"
-        placeholder="Enter your e-mail"
+        type="text"
+        name="secret"
+        id="secret"
+        placeholder="Enter your secret code"
         [disabled]="loginForm.submitted"
       />
       <div class="alert">
         <div
           *ngIf="
-            !emailInput.valid && emailInput.touched && emailInput.value === ''
+            !secretInput.valid &&
+            secretInput.touched &&
+            secretInput.value === ''
           "
         >
-          e-mail is required
-        </div>
-        <div
-          *ngIf="
-            !emailInput.valid &&
-            emailInput.touched &&
-            emailInput.value != '' &&
-            !loginForm.submitted
-          "
-        >
-          e-mail is invalid
+          Secret code is required
         </div>
       </div>
       <div class="valid">
-        <div *ngIf="emailInput.valid && emailInput.touched">
-          e-mail is valid
+        <div *ngIf="secretInput.valid && secretInput.touched">
+          Secret code is valid
         </div>
       </div>
     </div>

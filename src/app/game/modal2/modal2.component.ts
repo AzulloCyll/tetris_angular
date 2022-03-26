@@ -18,10 +18,6 @@ export class Modal2Component implements OnInit {
   public dataToShow: Array<hiScoresData> = [];
   public sortDirectionDown: boolean = false;
 
-  public showData = (data: Array<hiScoresData>, times: number) => {
-    return data.slice(0, times);
-  };
-
   public changeSortingDirection = (direction: string) => {
     if (direction == 'up') this.sortDirectionDown = true;
     if (direction == 'down') this.sortDirectionDown = false;
@@ -29,8 +25,7 @@ export class Modal2Component implements OnInit {
 
   ngOnInit(): void {
     this._scores.load().subscribe((result) => {
-      this.data = result;
-      this.dataToShow = this.showData(this.data, 10);
+      this.dataToShow = result;
     });
   }
 }

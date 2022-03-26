@@ -51,7 +51,7 @@ export class GameComponent {
     this._location.back();
   }
 
-  public isModal2Hidden: boolean = false;
+  public isModal2Hidden: boolean = true;
 
   // te zmienne są inputami w modal
   public isModalHidden: boolean = true;
