@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { TetrisCoreComponent } from 'ngx-tetris';
 import { HostListener } from '@angular/core'; //for keayboard controls
@@ -31,6 +32,8 @@ export interface LogData {
 export class GameComponent {
   constructor(private _location: Location, private _storage: StorageService) {
     this.playerName = this._storage.readPlayerName;
+    this.secretToken = this._storage.readSecretToken;
+    this.score = this._storage.readScore;
   }
 
   faArrowLeft = faArrowLeft;
@@ -46,17 +49,18 @@ export class GameComponent {
   @ViewChild(TetrisCoreComponent) private _tetris!: TetrisCoreComponent;
 
   public playerName: string;
+  public secretToken: string;
+  public score: number;
 
   goBack() {
     this._location.back();
   }
 
   public isModal2Hidden: boolean = true;
+  public isModalHidden: boolean = true;
 
   // te zmienne są inputami w modal
-  public isModalHidden: boolean = true;
   public optionsInFilter: Array<string> = [];
-  public score: number = 0;
   public status: string = 'Ready';
   public timePlayed: number = 0;
   public timeStamp: number = 0;
@@ -106,6 +110,8 @@ export class GameComponent {
         this._tetris.actionStop();
         this.status = 'Ready';
         this.timerReset();
+        this._storage.setScore(0);
+        this.score = this._storage.readScore;
         this.logData('Restarted game');
         ($event.target as HTMLButtonElement).blur();
         break;
@@ -131,6 +137,7 @@ export class GameComponent {
   //game events
   public onLineCleared() {
     this.score++;
+    this._storage.setScore(this.score);
     this.logData('Cleared line');
   }
   public onGameOver() {

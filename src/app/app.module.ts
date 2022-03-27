@@ -19,6 +19,7 @@ import { ModalComponent } from './game/modal/modal.component';
 import { RouterModule } from '@angular/router';
 import { Modal2Component } from './game/modal2/modal2.component';
 import { SortByScorePipe } from './sort-by-score.pipe';
+import { ScoresComponent } from './scores/scores.component';
 
 @NgModule({
   declarations: [
@@ -30,12 +31,14 @@ import { SortByScorePipe } from './sort-by-score.pipe';
     FilterByActionPipe,
     Modal2Component,
     SortByScorePipe,
+    ScoresComponent,
   ],
   imports: [
     FormsModule,
     RouterModule.forRoot([
       { path: 'game', component: GameComponent },
       { path: 'intro', component: IntroComponent },
+      { path: 'scores', component: ScoresComponent },
       { path: '**', redirectTo: 'intro' },
     ]),
     BrowserModule,

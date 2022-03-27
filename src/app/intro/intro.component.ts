@@ -26,6 +26,7 @@ export class IntroComponent implements OnInit {
     const token = form.value.secret;
 
     this._storage.setPlayerName(playerName);
+    this._storage.setSecretToken(token);
 
     // zapytac o lepsze otypowanie tego (Observable?, Partial?)
     this._scores.check(token).subscribe((result: Partial<auth>) => {

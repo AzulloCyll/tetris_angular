@@ -1,0 +1,30 @@
+<div class="center">
+  <h2>Your score: {{ score }}</h2>
+  <hr />
+  <h2>Hi scores</h2>
+  <nav>
+    <button
+      class="nav"
+      type="button"
+      [class.selected]="sortDirectionDown"
+      (click)="changeSortingDirection('up')"
+    >
+      Sort Up
+    </button>
+    <button
+      class="nav"
+      type="button"
+      [class.selected]="!sortDirectionDown"
+      (click)="changeSortingDirection('down')"
+    >
+      Sort Down
+    </button>
+  </nav>
+  <div>
+    <div *ngFor="let score of dataToShow | sortByScore: sortDirectionDown">
+      <span>{{ score.name }}</span>
+      <span>: {{ score.score }}</span>
+    </div>
+  </div>
+  <button [routerLink]="['/game']">Back to History Page</button>
+</div>

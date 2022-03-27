@@ -93,6 +93,8 @@
         border-radius: 5px;
         cursor: pointer;
         transition: all 0.3s ease-in;
+        margin: 0px 10px;
+        text-transform: uppercase;
         &:hover {
           background-color: #ff4d00;
         }
