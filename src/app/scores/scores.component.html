@@ -21,7 +21,11 @@
     </button>
   </nav>
   <div>
-    <div *ngFor="let score of dataToShow | sortByScore: sortDirectionDown">
+    <div
+      *ngFor="
+        let score of dataToShow | sortByScore: sortDirectionDown | slice: 0:10
+      "
+    >
       <span>{{ score.name }}</span>
       <span>: {{ score.score }}</span>
     </div>

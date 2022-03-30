@@ -37,19 +37,20 @@ export class ScoresComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    if (this.score !== 0) {
-      this._scores
-        .send(this.token, this.player, this.score.toString())
-        // jak to otypować ??
-        .subscribe((result: any) => {
-          this.data = result;
-          this.showPlayerScoresOnly();
-        });
-    } else {
+    const load = () => {
       this._scores.load().subscribe((result) => {
         this.data = result;
         this.showPlayerScoresOnly();
       });
+    };
+
+    if (this.score !== 0) {
+      this._scores.send(this.token, this.player, this.score.toString());
+      load();
+      setInterval(load, 30000);
+    } else {
+      load();
+      setInterval(load, 30000);
     }
   }
 }
