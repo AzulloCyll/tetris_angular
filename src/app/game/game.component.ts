@@ -77,8 +77,10 @@ export class GameComponent {
     this.isModalHidden = $event;
   }
 
-  public handleModal2Visibility() {
-    this.isModal2Hidden = false;
+  public handleModal2Visibility($event: boolean) {
+    console.log($event);
+
+    this.isModal2Hidden = $event;
   }
 
   public countScoreAndTimePlayed() {

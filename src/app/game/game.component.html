@@ -16,7 +16,7 @@
     <div class="score">
       <h2>
         score
-        <button type="button" (click)="handleModal2Visibility()">
+        <button type="button" (click)="handleModal2Visibility(false)">
           Highscores
         </button>
       </h2>
@@ -101,4 +101,7 @@
   [timePlayed]="timePlayed"
   [score]="score"
 ></app-modal>
-<app-modal2 [class.hidden]="isModal2Hidden"></app-modal2>
+<app-modal2
+  [class.hidden]="isModal2Hidden"
+  (handleModal2Visibility)="handleModal2Visibility($event)"
+></app-modal2>

@@ -1,6 +1,8 @@
 <div class="modal2">
   <div class="center">
-    <h2>High Scores</h2>
+    <h2>Your score: {{ score }}</h2>
+    <hr />
+    <h2>Hi scores</h2>
     <nav>
       <button
         type="button"
@@ -26,5 +28,6 @@
         <span>{{ item.name }}: </span><span>{{ item.score }}</span>
       </div>
     </div>
+    <button (click)="back()">Back</button>
   </div>
 </div>
