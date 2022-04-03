@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { TetrisCoreComponent } from 'ngx-tetris';
 import { HostListener } from '@angular/core'; //for keayboard controls
@@ -78,8 +77,6 @@ export class GameComponent {
   }
 
   public handleModal2Visibility($event: boolean) {
-    console.log($event);
-
     this.isModal2Hidden = $event;
   }
 

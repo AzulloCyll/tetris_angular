@@ -45,8 +45,6 @@ export class Modal2Component implements OnInit {
   };
 
   public back() {
-    console.log('click');
-
     this.handleModal2Visibility.emit(true);
   }
 
@@ -54,17 +52,17 @@ export class Modal2Component implements OnInit {
     const load = () => {
       this._scores.load().subscribe((result) => {
         this.data = result;
-        this.showPlayerScoresOnly();
+        this.dataToShow = result;
+        console.log('refreshed');
+
+        // this.showPlayerScoresOnly();
       });
     };
 
-    if (this.score !== 0) {
-      this._scores.send(this.token, this.player, this.score.toString());
-      load();
-      setInterval(load, 30000);
-    } else {
-      load();
-      setInterval(load, 30000);
-    }
+    load();
+    setInterval(load, 2000);
+
+    // przeniesc do game
+    // this._scores.send(this.token, this.player, this.score.toString());
   }
 }
