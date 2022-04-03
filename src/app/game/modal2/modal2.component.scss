@@ -1,11 +1,12 @@
 .modal2 {
-  font-family: Lato, sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
   background-color: rgba(0, 0, 0, 0.7);
+
   & .center {
     color: #777777;
     display: flex;
@@ -17,25 +18,101 @@
     margin-top: 50px;
     text-align: center;
     border-radius: 7px;
-    & div span {
-      padding: 5px;
-      width: 45%;
+
+    & h2 {
       color: black;
-      display: block;
-      float: left;
     }
-    & div span:first-child {
-      text-align: right;
+
+    & .info {
+      height: 20%;
     }
-    & div span:last-child {
-      text-align: left;
+
+    & .history {
+      height: 65%;
+
+      & nav {
+        margin-bottom: 20px;
+
+        & button {
+          cursor: pointer;
+          padding: 5px 10px;
+          font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+            sans-serif;
+          font-size: 1rem;
+          margin: 5px;
+          color: grey;
+          border-radius: 5px;
+          border: 1px solid lightgrey;
+
+          &:hover {
+            border: 1px solid grey;
+            background-color: silver;
+            color: black;
+          }
+
+          &.hidden {
+            display: none;
+          }
+        }
+      }
+
+      & .names {
+        width: 87.6%;
+        padding-right: 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 0 auto;
+
+        & div {
+          width: 20%;
+          color: black;
+          border-bottom: 2px solid grey;
+        }
+      }
+
+      & .table {
+        width: 90%;
+        height: 50%;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        overflow-y: scroll;
+
+        & div {
+          padding-bottom: 3px;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+
+          & div {
+            width: 20%;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            color: grey;
+            border-bottom: 1px solid silver;
+          }
+        }
+      }
     }
-    & nav {
-      display: block;
+
+    & .bottom-nav {
+      height: 15%;
+
       & button {
-        margin: 10px;
-        &.selected {
-          color: red;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        padding: 10px 20px;
+        background-color: darkorange;
+        color: white;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease-in;
+        margin: 0px 10px;
+        text-transform: uppercase;
+
+        &:hover {
+          background-color: #ff4d00;
         }
       }
     }

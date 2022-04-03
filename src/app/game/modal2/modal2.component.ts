@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 import { HiscoresService } from 'src/app/hiscores.service';
 import { StorageService } from 'src/app/storage.service';
@@ -23,6 +24,9 @@ export class Modal2Component implements OnInit {
     this.token = this._storage.readSecretToken;
   }
 
+  faAngleUp = faAngleUp;
+  faAngleDown = faAngleDown;
+
   @Output() handleModalVisibility: EventEmitter<boolean> = new EventEmitter();
 
   public player: string;
@@ -39,9 +43,8 @@ export class Modal2Component implements OnInit {
     this.dataToShow = this.data.filter((item) => this.player === item.name);
   };
 
-  public changeSortingDirection = (direction: string) => {
-    if (direction == 'up') this.sortDirectionDown = true;
-    if (direction == 'down') this.sortDirectionDown = false;
+  public changeSortingDirection = () => {
+    this.sortDirectionDown = !this.sortDirectionDown;
   };
 
   public back() {
@@ -61,8 +64,5 @@ export class Modal2Component implements OnInit {
 
     load();
     setInterval(load, 2000);
-
-    // przeniesc do game
-    // this._scores.send(this.token, this.player, this.score.toString());
   }
 }

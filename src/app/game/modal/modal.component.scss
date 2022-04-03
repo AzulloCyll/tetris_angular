@@ -6,6 +6,7 @@
   top: 0px;
   bottom: 0px;
   background-color: rgba(0, 0, 0, 0.7);
+
   & .center {
     color: #777777;
     display: flex;
@@ -23,10 +24,11 @@
     & .info {
       height: 20%;
     }
-    & .history {
+    & .scores {
       height: 65%;
       & nav {
         margin-bottom: 20px;
+        
         & button {
           cursor: pointer;
           padding: 5px 10px;

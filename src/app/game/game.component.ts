@@ -4,6 +4,8 @@ import { TetrisCoreComponent } from 'ngx-tetris';
 import { HostListener } from '@angular/core'; //for keayboard controls
 import { Location } from '@angular/common';
 import { StorageService } from '../storage.service';
+import { HiscoresService } from 'src/app/hiscores.service';
+
 import {
   faArrowLeft,
   faArrowRight,
@@ -29,7 +31,11 @@ export interface LogData {
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent {
-  constructor(private _location: Location, private _storage: StorageService) {
+  constructor(
+    private _location: Location,
+    private _storage: StorageService,
+    private _scores: HiscoresService
+  ) {
     this.playerName = this._storage.readPlayerName;
     this.secretToken = this._storage.readSecretToken;
     this.score = this._storage.readScore;
@@ -64,7 +70,6 @@ export class GameComponent {
   public timePlayed: number = 0;
   public timeStamp: number = 0;
 
-  // TEST DATA
   public historyData: Array<LogData> = [];
 
   // timer initial data
@@ -76,9 +81,18 @@ export class GameComponent {
     this.isModalHidden = $event;
   }
 
+  //shows and hides hi scores
   public handleModal2Visibility($event: boolean) {
     this.isModal2Hidden = $event;
   }
+
+  public sendHiscore = () => {
+    console.log('test');
+
+    this._scores
+      .send(this.secretToken, this.playerName, this.score.toString())
+      .subscribe();
+  };
 
   public countScoreAndTimePlayed() {
     let allScores = this.historyData.map((item) => item.score);
@@ -147,6 +161,8 @@ export class GameComponent {
     this.generateOptionsInFilter();
     this.countScoreAndTimePlayed();
     this.handleModalVisibility(false);
+
+    this.sendHiscore();
   }
 
   //utility functions
