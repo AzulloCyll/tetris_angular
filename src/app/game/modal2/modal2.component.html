@@ -17,18 +17,14 @@
 					></fa-icon>
 					Score
 				</button>
-				<!-- Filter by action type:
-				<select (change)="filterByActionHandler($event)">
-					<option
-						*ngFor="let option of optionsInFilter"
-						[value]="option"
-						[attr.selected]="
-							option === optionSelected ? true : null
-						"
-					>
-						{{ option }}
-					</option>
-				</select> -->
+
+				<input
+					type="checkbox"
+					id="sortbyplayer"
+					[checked]="sortByPlayerName"
+					(change)="showPlayerScoresOnlyHandler()"
+				/>
+				<label for="sortbyplayer">Only your scores</label>
 
 				<input
 					type="checkbox"
@@ -41,7 +37,7 @@
 			<div
 				*ngFor="
 					let item of dataToShow
-						| sortByScore: sortDirectionDown
+						| sortByScore: sortDirectionDown:sortByPlayerName:player
 						| slice: 0:10
 				"
 			>

@@ -1,10 +1,16 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {
+	Component,
+	OnInit,
+	Output,
+	EventEmitter,
+	OnDestroy
+} from '@angular/core';
 import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 import { HiscoresService } from 'src/app/hiscores.service';
 import { StorageService } from 'src/app/storage.service';
 
-import { timer, switchMap, filter } from 'rxjs';
+import { timer, switchMap, filter, Subscription } from 'rxjs';
 
 export interface hiScoresData {
 	name: string;
@@ -16,7 +22,9 @@ export interface hiScoresData {
 	templateUrl: './modal2.component.html',
 	styleUrls: ['./modal2.component.scss']
 })
-export class Modal2Component implements OnInit {
+export class Modal2Component implements OnInit, OnDestroy {
+	private _sub$: Subscription;
+
 	constructor(
 		private _scores: HiscoresService,
 		private _storage: StorageService
@@ -25,13 +33,12 @@ export class Modal2Component implements OnInit {
 		this.score = this._storage.readScore;
 		this.token = this._storage.readSecretToken;
 
-		this._timer$
+		this._sub$ = this._timer$
 			.pipe(
 				switchMap(() => this._hiScoresStream$),
 				filter(() => this.paused)
 			)
 			.subscribe((result: any) => {
-				this.data = result;
 				this.dataToShow = result;
 				console.log('Refreshed');
 			});
@@ -39,33 +46,32 @@ export class Modal2Component implements OnInit {
 
 	//strumien danych z hiscore
 	private _hiScoresStream$ = this._scores.load();
-	//strumien zegara
 	private _timer$ = timer(0, 3000);
 
 	public paused: boolean = true;
 
-	pauseCheckboxhandler(): void {
-		this.paused = !this.paused;
-	}
-
 	faAngleUp = faAngleUp;
 	faAngleDown = faAngleDown;
 
-	@Output() handleModalVisibility: EventEmitter<boolean> = new EventEmitter();
+	@Output() handleModal2Visibility: EventEmitter<boolean> =
+		new EventEmitter();
 
 	public player: string;
 	public score: number;
 	public token: string;
 
-	public data: Array<hiScoresData> = [];
 	public dataToShow: Array<hiScoresData> = [];
 	public sortDirectionDown: boolean = false;
 
-	@Output() handleModal2Visibility: EventEmitter<boolean> =
-		new EventEmitter();
+	public sortByPlayerName: boolean = false;
 
-	public showPlayerScoresOnly = () => {
-		this.dataToShow = this.data.filter((item) => this.player === item.name);
+	pauseCheckboxhandler(): void {
+		this.paused = !this.paused;
+	}
+
+	public showPlayerScoresOnlyHandler = () => {
+		this.sortByPlayerName = !this.sortByPlayerName;
+		console.log(this.sortByPlayerName);
 	};
 
 	public changeSortingDirection = () => {
@@ -77,4 +83,8 @@ export class Modal2Component implements OnInit {
 	}
 
 	ngOnInit(): void {}
+
+	ngOnDestroy(): void {
+		this._sub$.unsubscribe();
+	}
 }

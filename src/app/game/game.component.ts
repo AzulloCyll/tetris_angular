@@ -61,7 +61,7 @@ export class GameComponent {
 		this._location.back();
 	}
 
-	public isModal2Hidden: boolean = false;
+	public isModal2Hidden: boolean = true;
 	public isModalHidden: boolean = true;
 
 	// te zmienne są inputami w modal
@@ -87,7 +87,7 @@ export class GameComponent {
 	}
 
 	public sendHiscore = () => {
-		console.log('test');
+		console.log('Score added');
 
 		this._scores
 			.send(this.secretToken, this.playerName, this.score.toString())
