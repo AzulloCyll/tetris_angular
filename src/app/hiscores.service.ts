@@ -22,14 +22,17 @@ export class HiscoresService {
 		return this._http.post(URL, body);
 	}
 
-	send(token: string, playerName: string, score: string) {
-		const URL = 'http://localhost:55000/';
+	send(token: string, playerName: string, score: number) {
+		const URL = 'http://localhost:55000/scores';
 		const body = {
-			'auth-token': token,
 			name: playerName,
 			game: 'tetris',
 			score: score
 		};
-		return this._http.post(URL, body);
+		return this._http.post(URL, body, {
+			headers: {
+				'auth-token': token
+			}
+		});
 	}
 }

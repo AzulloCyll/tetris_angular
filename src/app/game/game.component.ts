@@ -87,11 +87,15 @@ export class GameComponent {
 	}
 
 	public sendHiscore = () => {
-		console.log('Score added');
+		console.log('Score added!');
 
-		this._scores
-			.send(this.secretToken, this.playerName, this.score.toString())
-			.subscribe();
+		if (this.score !== 0) {
+			this._scores
+				.send(this.secretToken, this.playerName, this.score)
+				.subscribe((res) => console.log(res));
+		} else {
+			console.log('Score too low and not added!');
+		}
 	};
 
 	public countScoreAndTimePlayed() {
