@@ -20,6 +20,12 @@ export class IntroComponent implements OnInit {
 
   public isLogged: boolean = false;
   public auth: any = { success: false };
+  public optionsInColorPalletes: Array<string> = ['normal', 'contrast'];
+  public selectedColorPallette: string = 'normal';
+
+  public selectedColorPaletteHandler($event: Event) {
+    this.selectedColorPallette = ($event.target as HTMLOptionElement).value;
+  }
 
   public verify(form: FormGroup) {
     const playerName = form.value.name;

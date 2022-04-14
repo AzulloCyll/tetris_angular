@@ -21,29 +21,29 @@ import { Modal2Component } from './game/modal2/modal2.component';
 import { SortByScorePipe } from './sort-by-score.pipe';
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		IntroComponent,
-		GameComponent,
-		ModalComponent,
-		SortByPipe,
-		FilterByActionPipe,
-		Modal2Component,
-		SortByScorePipe
-	],
-	imports: [
-		FormsModule,
-		RouterModule.forRoot([
-			{ path: 'game', component: GameComponent },
-			{ path: 'intro', component: IntroComponent },
-			{ path: '**', redirectTo: 'intro' }
-		]),
-		BrowserModule,
-		TetrisCoreModule,
-		FontAwesomeModule,
-		HttpClientModule
-	],
-	providers: [],
-	bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    IntroComponent,
+    GameComponent,
+    ModalComponent,
+    SortByPipe,
+    FilterByActionPipe,
+    Modal2Component,
+    SortByScorePipe,
+  ],
+  imports: [
+    FormsModule,
+    RouterModule.forRoot([
+      { path: 'game/:color', component: GameComponent },
+      { path: 'intro', component: IntroComponent },
+      { path: '**', redirectTo: 'intro' },
+    ]),
+    BrowserModule,
+    TetrisCoreModule,
+    FontAwesomeModule,
+    HttpClientModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

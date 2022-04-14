@@ -81,6 +81,18 @@
       </div>
     </div>
 
+    <div class="input-container">
+      <select (change)="selectedColorPaletteHandler($event)">
+        <option
+          *ngFor="let option of optionsInColorPalletes"
+          [value]="option"
+          [attr.selected]="option === selectedColorPallette ? true : null"
+        >
+          {{ option }}
+        </option>
+      </select>
+    </div>
+
     <button type="submit" [disabled]="!loginForm.valid">Sign in</button>
 
     <hr />
@@ -89,7 +101,7 @@
       class="start-button"
       value="game"
       [disabled]="!isLogged"
-      [routerLink]="['/game']"
+      [routerLink]="['/game', selectedColorPallette]"
     >
       go to game
     </button>
