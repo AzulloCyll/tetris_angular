@@ -81,8 +81,8 @@
       </div>
     </div>
 
-    <div class="input-container">
-      <div class="switch">
+    <div class="wrapper">
+      <div class="switch-container">
         <label for="nightMode">Night mode:</label>
         <input
           class="switch"
@@ -94,9 +94,8 @@
         />
         <span class="slider"></span>
       </div>
+      <button type="submit" [disabled]="!loginForm.valid">Sign in</button>
     </div>
-
-    <button type="submit" [disabled]="!loginForm.valid">Sign in</button>
 
     <hr />
     <button
