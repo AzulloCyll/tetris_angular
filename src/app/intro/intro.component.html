@@ -82,15 +82,18 @@
     </div>
 
     <div class="input-container">
-      <select (change)="selectedColorPaletteHandler($event)">
-        <option
-          *ngFor="let option of optionsInColorPalletes"
-          [value]="option"
-          [attr.selected]="option === selectedColorPallette ? true : null"
-        >
-          {{ option }}
-        </option>
-      </select>
+      <div class="switch">
+        <label for="nightMode">Night mode:</label>
+        <input
+          class="switch"
+          type="checkbox"
+          name="nightMode"
+          id="nightMode"
+          [checked]="nightModeOn"
+          (change)="selectedColorPaletteHandler()"
+        />
+        <span class="slider"></span>
+      </div>
     </div>
 
     <button type="submit" [disabled]="!loginForm.valid">Sign in</button>

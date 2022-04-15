@@ -20,11 +20,14 @@ export class IntroComponent implements OnInit {
 
   public isLogged: boolean = false;
   public auth: any = { success: false };
-  public optionsInColorPalletes: Array<string> = ['normal', 'contrast'];
+  public nightModeOn: boolean = false;
   public selectedColorPallette: string = 'normal';
 
-  public selectedColorPaletteHandler($event: Event) {
-    this.selectedColorPallette = ($event.target as HTMLOptionElement).value;
+  public selectedColorPaletteHandler() {
+    this.nightModeOn = !this.nightModeOn;
+    this.nightModeOn
+      ? (this.selectedColorPallette = 'contrast')
+      : (this.selectedColorPallette = 'normal');
   }
 
   public verify(form: FormGroup) {

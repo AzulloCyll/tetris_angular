@@ -23,6 +23,56 @@
         text-align: left;
         margin-bottom: 5px;
       }
+
+      //switch
+      .switch {
+        position: relative;
+        display: block;
+        margin-bottom: 12px;
+  
+        & input {
+          z-index: 20;
+          opacity: 0;
+          width: 80px;
+          height:36px;
+          cursor: pointer;
+          &:checked + .slider {
+            background-color: #2196f3;
+          }
+          &:focus + .slider {
+            box-shadow: 0 0 1px #2196f3;
+          }
+          &:checked + .slider:before {
+            transform: translateX(26px);
+          }
+        }
+        & .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 25px;
+          left: 7px;
+          width: 62px;
+          height: 35px;
+          border-radius: 999px;
+
+          background-color: #ccc;
+          -webkit-transition: 0.4s;
+          transition: 0.4s;
+        }
+        & .slider:before {
+          position: absolute;
+          content: "";
+          height: 27px;
+          width: 27px;
+          left: 4px;
+          bottom: 4px;
+          background-color: white;
+          -webkit-transition: 0.4s;
+          transition: 0.4s;
+          border-radius: 50%;
+        }
+      }
+
       & input {
         padding: 10px 15px;
         margin-bottom: 10px;
