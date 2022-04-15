@@ -3,4 +3,13 @@
 body {
   background-color: #fff1d5;
   margin: 0;
+  &.dark-theme {
+    background-color: #202020;
+    & main {
+     
+      & .center {
+        background-color: red !important;
+      }
+    }
+  }
 }

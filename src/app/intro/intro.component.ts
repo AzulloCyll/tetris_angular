@@ -28,6 +28,8 @@ export class IntroComponent implements OnInit {
     this.nightModeOn
       ? (this.selectedColorPallette = 'contrast')
       : (this.selectedColorPallette = 'normal');
+
+    document.body.classList.toggle('dark-theme');
   }
 
   public verify(form: FormGroup) {
