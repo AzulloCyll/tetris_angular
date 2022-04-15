@@ -4,6 +4,7 @@ import {
   Output,
   EventEmitter,
   OnDestroy,
+  Input,
 } from '@angular/core';
 import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
@@ -35,6 +36,7 @@ export class Modal2Component implements OnInit, OnDestroy {
 
     this._sub$ = this._timer$
       .pipe(
+        filter(() => !this.isModal2Hidden),
         filter(() => this.paused),
         switchMap(() => this._hiScoresStream$)
       )
@@ -47,13 +49,13 @@ export class Modal2Component implements OnInit, OnDestroy {
   //strumien danych z hiscore
   private _hiScoresStream$ = this._scores.load();
   private _timer$ = timer(0, 3000);
-
   public paused: boolean = true;
 
   faAngleUp = faAngleUp;
   faAngleDown = faAngleDown;
 
   @Output() handleModal2Visibility: EventEmitter<boolean> = new EventEmitter();
+  @Input() isModal2Hidden!: boolean;
 
   public player: string;
   public score: number;
@@ -61,7 +63,6 @@ export class Modal2Component implements OnInit, OnDestroy {
 
   public dataToShow: Array<hiScoresData> = [];
   public sortDirectionDown: boolean = false;
-
   public sortByPlayerName: boolean = false;
 
   pauseCheckboxhandler(): void {
@@ -70,7 +71,6 @@ export class Modal2Component implements OnInit, OnDestroy {
 
   public showPlayerScoresOnlyHandler = () => {
     this.sortByPlayerName = !this.sortByPlayerName;
-    console.log(this.sortByPlayerName);
   };
 
   public changeSortingDirection = () => {
@@ -81,7 +81,12 @@ export class Modal2Component implements OnInit, OnDestroy {
     this.handleModal2Visibility.emit(true);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._hiScoresStream$.subscribe((result) => {
+      this.dataToShow = result;
+      console.log('Refreshed first time');
+    });
+  }
 
   ngOnDestroy(): void {
     this._sub$.unsubscribe();

@@ -7,40 +7,23 @@
 			<nav>
 				Sort by:
 				<button (click)="changeSortingDirection()">
-					<fa-icon
-						*ngIf="sortDirectionDown"
-						[icon]="faAngleUp"
-					></fa-icon>
-					<fa-icon
-						*ngIf="!sortDirectionDown"
-						[icon]="faAngleDown"
-					></fa-icon>
+					<fa-icon *ngIf="sortDirectionDown" [icon]="faAngleUp"></fa-icon>
+					<fa-icon *ngIf="!sortDirectionDown" [icon]="faAngleDown"></fa-icon>
 					Score
 				</button>
 
-				<input
-					type="checkbox"
-					id="sortbyplayer"
-					[checked]="sortByPlayerName"
-					(change)="showPlayerScoresOnlyHandler()"
-				/>
+				<input type="checkbox" id="sortbyplayer" [checked]="sortByPlayerName"
+					(change)="showPlayerScoresOnlyHandler()" />
 				<label for="sortbyplayer">Only your scores</label>
 
-				<input
-					type="checkbox"
-					id="pause"
-					[checked]="paused"
-					(change)="pauseCheckboxhandler()"
-				/>
+				<input type="checkbox" id="pause" [checked]="paused" (change)="pauseCheckboxhandler()" />
 				<label for="pause">Autorefresh</label>
 			</nav>
-			<div
-				*ngFor="
+			<div *ngFor="
 					let item of dataToShow
 						| sortByScore: sortDirectionDown:sortByPlayerName:player
 						| slice: 0:10
-				"
-			>
+				">
 				<div class="hiscore">
 					<span>{{ item.name }}: </span><span>{{ item.score }}</span>
 				</div>
