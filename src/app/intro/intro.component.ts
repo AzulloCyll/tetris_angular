@@ -46,5 +46,7 @@ export class IntroComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // document.body.classList.add('dark-theme'); //dev mode
+  }
 }

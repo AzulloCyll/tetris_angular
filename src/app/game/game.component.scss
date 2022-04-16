@@ -82,3 +82,12 @@
   display: none;
   background-color: red;
 }
+
+tetris-core.normal {
+  & tile {
+    color: red;
+  }
+}
+
+
+

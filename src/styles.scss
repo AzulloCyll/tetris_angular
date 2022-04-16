@@ -6,10 +6,71 @@ body {
   &.dark-theme {
     background-color: #202020;
     & main {
-     
       & .center {
-        background-color: red !important;
+        background-color: rgb(57, 57, 57) !important;
+        & p {
+          color: rgb(177, 177, 177) !important;
+        }
+        & h2 {
+          color: white !important;
+        }
       }
+      & form {
+        & .input-container {
+          & label {
+            color: rgb(132, 132, 132) !important;
+          }
+          input {
+            background-color: #202020 !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+.right-panel {
+  & div {
+    & div {
+      color: white !important;
+    }
+  }
+}
+
+tetris-core.contrast {
+  tile {
+    background: rgb(51, 51, 51);
+
+    &.color-box {
+      background: #acacac;
+    }
+
+    &.color-dot {
+      background: #acacac;
+    }
+
+    &.color-line {
+      background: #acacac;
+    }
+
+    &.color-t {
+      background: #acacac;
+    }
+
+    &.color-l {
+      background: #acacac;
+    }
+
+    &.color-lr {
+      background: #acacac;
+    }
+
+    &.color-z {
+      background: #acacac;
+    }
+
+    &.color-s {
+      background: #acacac;
     }
   }
 }

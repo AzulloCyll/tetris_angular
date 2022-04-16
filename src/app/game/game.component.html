@@ -1,6 +1,7 @@
 <div class="center">
   <div class="game">
     <tetris-core
+      [ngClass]="color"
       #game
       (lineCleared)="onLineCleared()"
       (gameOver)="onGameOver()"
