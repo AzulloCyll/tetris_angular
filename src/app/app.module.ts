@@ -36,7 +36,7 @@ import { SortByScorePipe } from './sort-by-score.pipe';
     RouterModule.forRoot([
       { path: 'game/:color', component: GameComponent },
       { path: 'intro', component: IntroComponent },
-      { path: '**', redirectTo: 'intro' },
+      { path: '**', redirectTo: 'game/contrast' },
     ]),
     BrowserModule,
     TetrisCoreModule,

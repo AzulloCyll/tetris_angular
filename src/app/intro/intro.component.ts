@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { StorageService } from '../storage.service';
 import { HiscoresService } from 'src/app/hiscores.service';
+import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 
 interface auth {
   success: boolean;
@@ -24,12 +25,13 @@ export class IntroComponent implements OnInit {
   public selectedColorPallette: string = 'normal';
 
   public selectedColorPaletteHandler() {
-    this.nightModeOn = !this.nightModeOn;
     this.nightModeOn
       ? (this.selectedColorPallette = 'contrast')
       : (this.selectedColorPallette = 'normal');
 
-    document.body.classList.toggle('dark-theme');
+    this.nightModeOn
+      ? document.body.classList.add('dark-theme')
+      : document.body.classList.remove('dark-theme');
   }
 
   public verify(form: FormGroup) {

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 
 import { TetrisCoreComponent } from 'ngx-tetris';
 import { HostListener } from '@angular/core'; //for keayboard controls
@@ -17,6 +17,7 @@ import {
   faPlay,
   faPause,
   faSignOutAlt,
+  faStar,
 } from '@fortawesome/free-solid-svg-icons';
 
 export interface LogData {
@@ -31,7 +32,7 @@ export interface LogData {
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'],
 })
-export class GameComponent {
+export class GameComponent implements OnInit {
   constructor(
     private _location: Location,
     private _storage: StorageService,
@@ -57,6 +58,7 @@ export class GameComponent {
   faPlay = faPlay;
   faPause = faPause;
   faSignOutAlt = faSignOutAlt;
+  faStar = faStar;
 
   @ViewChild(TetrisCoreComponent) private _tetris!: TetrisCoreComponent;
 
@@ -236,5 +238,9 @@ export class GameComponent {
   private timerReset() {
     this.timerPause();
     this.timePlayed = 0;
+  }
+
+  ngOnInit(): void {
+    document.body.classList.add('dark-theme'); //for dev purpose only
   }
 }

@@ -89,7 +89,7 @@
           type="checkbox"
           name="nightMode"
           id="nightMode"
-          [checked]="nightModeOn"
+          [(ngModel)]="nightModeOn"
           (change)="selectedColorPaletteHandler()"
         />
         <span class="slider"></span>

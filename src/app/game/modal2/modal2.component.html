@@ -1,36 +1,47 @@
 <div class="modal2">
-	<div class="center">
-		<div class="history">
-			<h2>Your score: {{ score }}</h2>
+  <div class="center">
+    <div class="history">
+      <h2>Your score: {{ score }}</h2>
 
-			<h2>Hi scores</h2>
-			<nav>
-				Sort by:
-				<button (click)="changeSortingDirection()">
-					<fa-icon *ngIf="sortDirectionDown" [icon]="faAngleUp"></fa-icon>
-					<fa-icon *ngIf="!sortDirectionDown" [icon]="faAngleDown"></fa-icon>
-					Score
-				</button>
+      <h2>Hi scores</h2>
+      <nav>
+        Sort by:
+        <button (click)="changeSortingDirection()">
+          <fa-icon *ngIf="sortDirectionDown" [icon]="faAngleUp"></fa-icon>
+          <fa-icon *ngIf="!sortDirectionDown" [icon]="faAngleDown"></fa-icon>
+          Score
+        </button>
 
-				<input type="checkbox" id="sortbyplayer" [checked]="sortByPlayerName"
-					(change)="showPlayerScoresOnlyHandler()" />
-				<label for="sortbyplayer">Only your scores</label>
+        <input
+          type="checkbox"
+          id="sortbyplayer"
+          [checked]="sortByPlayerName"
+          (change)="showPlayerScoresOnlyHandler()"
+        />
+        <label for="sortbyplayer">Only your scores</label>
 
-				<input type="checkbox" id="pause" [checked]="paused" (change)="pauseCheckboxhandler()" />
-				<label for="pause">Autorefresh</label>
-			</nav>
-			<div *ngFor="
-					let item of dataToShow
-						| sortByScore: sortDirectionDown:sortByPlayerName:player
-						| slice: 0:10
-				">
-				<div class="hiscore">
-					<span>{{ item.name }}: </span><span>{{ item.score }}</span>
-				</div>
-			</div>
-		</div>
-		<div class="bottom-nav">
-			<button (click)="back()">Back</button>
-		</div>
-	</div>
+        <input
+          type="checkbox"
+          id="pause"
+          [checked]="paused"
+          (change)="pauseCheckboxhandler()"
+        />
+        <label for="pause">Autorefresh</label>
+      </nav>
+      <div
+        *ngFor="
+          let item of dataToShow
+            | sortByScore: sortDirectionDown:sortByPlayerName:player
+            | slice: 0:10
+        "
+      >
+        <div class="hiscore">
+          <span>{{ item.name }}: </span><span>{{ item.score }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <button class="btn-back" (click)="back()">Back</button>
+    </div>
+  </div>
 </div>
