@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class StorageService {
-  private _playerName: string = 'playerOne';
-  private _secretToken: string = '0000';
+  private _playerName: string = '';
+  private _secretToken: string = '';
   private _score: number = 0;
 
   public get readPlayerName() {

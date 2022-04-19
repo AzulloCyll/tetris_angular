@@ -40,7 +40,7 @@
         *ngIf="status !== 'Paused'; else paused"
         value="start"
         (click)="onButtonPressed($event)"
-        [class.disabled]="status === 'Playing'"
+        [class.disabled]="status === 'Playing' || !playerLogged"
       >
         <fa-icon [icon]="faPlay"></fa-icon> Start
       </button>

@@ -49,6 +49,8 @@ export class IntroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // document.body.classList.add('dark-theme'); //dev mode
+    this._storage.setPlayerName('');
+    this._storage.setSecretToken('');
+    this._storage.setScore(0);
   }
 }

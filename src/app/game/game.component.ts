@@ -66,6 +66,7 @@ export class GameComponent implements OnInit {
   public secretToken: string;
   public score: number;
   public color!: string;
+  public playerLogged: boolean = true;
 
   goBack() {
     this._location.back();
@@ -241,6 +242,11 @@ export class GameComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    document.body.classList.add('dark-theme'); //for dev purpose only
+    if (!this.playerName && !this.secretToken) {
+      this.playerName = 'Not logged';
+      this.playerLogged = false;
+    }
+    console.log(this.playerLogged);
+    // document.body.classList.add('dark-theme'); //for dev purpose only
   }
 }
