@@ -19,6 +19,7 @@ import { ModalComponent } from './game/modal/modal.component';
 import { RouterModule } from '@angular/router';
 import { Modal2Component } from './game/modal2/modal2.component';
 import { SortByScorePipe } from './sort-by-score.pipe';
+import { PlayerDataGuard } from './player-data.guard';
 
 @NgModule({
   declarations: [
@@ -34,9 +35,13 @@ import { SortByScorePipe } from './sort-by-score.pipe';
   imports: [
     FormsModule,
     RouterModule.forRoot([
-      { path: 'game/:color', component: GameComponent },
+      {
+        path: 'game/:color',
+        component: GameComponent,
+        canActivate: [PlayerDataGuard],
+      },
       { path: 'intro', component: IntroComponent },
-      { path: '**', redirectTo: 'game/contrast' },
+      { path: '**', redirectTo: 'intro' },
     ]),
     BrowserModule,
     TetrisCoreModule,
