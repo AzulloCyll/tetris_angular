@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { StorageService } from '../storage.service';
 import { HiscoresService } from 'src/app/hiscores.service';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { faThList } from '@fortawesome/free-solid-svg-icons';
 
 interface auth {
   success: boolean;
@@ -21,7 +22,7 @@ export class IntroComponent implements OnInit {
 
   public isLogged: boolean = false;
   public auth: any = { success: false };
-  public nightModeOn: boolean = false;
+  public nightModeOn: boolean = this._storage.readNightModeOnStatus;
   public selectedColorPallette: string = 'normal';
 
   public selectedColorPaletteHandler() {
@@ -32,6 +33,10 @@ export class IntroComponent implements OnInit {
     this.nightModeOn
       ? document.body.classList.add('dark-theme')
       : document.body.classList.remove('dark-theme');
+
+    this.nightModeOn
+      ? this._storage.setNightModeOnStatus(true)
+      : this._storage.setNightModeOnStatus(false);
   }
 
   public verify(form: FormGroup) {
