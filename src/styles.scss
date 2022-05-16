@@ -21,11 +21,10 @@ body {
         color: rgb(218, 218, 218) !important;
         &.disabled {
           color: rgb(45, 45, 45) !important;
-
         }
         &:hover {
           color: rgb(45, 45, 45) !important;
-              border: 1px solid rgb(174, 174, 174) !important;
+          border: 1px solid rgb(174, 174, 174) !important;
         }
         &.btn-back {
           border: 0 !important;
@@ -38,9 +37,10 @@ body {
           }
           input {
             background-color: #202020 !important;
+            color: #b0b0b0 !important;
           }
           & .valid {
-            color: #45d245 !important
+            color: #45d245 !important;
           }
         }
       }

@@ -246,7 +246,5 @@ export class GameComponent implements OnInit {
       this.playerName = 'Not logged';
       this.playerLogged = false;
     }
-    console.log(this.playerLogged);
-    // document.body.classList.add('dark-theme'); //for dev purpose only
   }
 }

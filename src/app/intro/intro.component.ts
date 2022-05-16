@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StorageService } from '../storage.service';
 import { HiscoresService } from 'src/app/hiscores.service';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { faThList } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 interface auth {
   success: boolean;
@@ -15,10 +14,25 @@ interface auth {
   styleUrls: ['./intro.component.scss'],
 })
 export class IntroComponent implements OnInit {
+  public introForm: FormGroup;
+
   constructor(
     private _storage: StorageService,
-    private _scores: HiscoresService
-  ) {}
+    private _scores: HiscoresService,
+    private _router: Router,
+    public fb: FormBuilder
+  ) {
+    this.introForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(5)]],
+      token: ['', [Validators.required]],
+      nightModeOn: [this._storage.readNightModeOnStatus],
+    });
+
+    this.nightModeOnControl?.valueChanges.subscribe((item) => {
+      this.nightModeOn = item;
+      this.selectedColorPaletteHandler();
+    });
+  }
 
   public isLogged: boolean = false;
   public auth: any = { success: false };
@@ -39,9 +53,9 @@ export class IntroComponent implements OnInit {
       : this._storage.setNightModeOnStatus(false);
   }
 
-  public verify(form: FormGroup) {
+  public onSubmit(form: FormGroup) {
     const playerName = form.value.name;
-    const token = form.value.secret;
+    const token = form.value.token;
 
     this._storage.setPlayerName(playerName);
     this._storage.setSecretToken(token);
@@ -49,8 +63,25 @@ export class IntroComponent implements OnInit {
     // zapytac o lepsze otypowanie tego (Observable?, Partial?)
     this._scores.check(token).subscribe((result: Partial<auth>) => {
       this.auth = result;
+
       this.isLogged = this.auth.success;
+
+      if (this.isLogged) {
+        this._router.navigate(['/game', this.selectedColorPallette]);
+      } else alert('Wrong TOKEN');
     });
+  }
+
+  public get name() {
+    return this.introForm.get('name');
+  }
+
+  public get token() {
+    return this.introForm.get('token');
+  }
+
+  public get nightModeOnControl() {
+    return this.introForm.get('nightModeOn');
   }
 
   ngOnInit(): void {

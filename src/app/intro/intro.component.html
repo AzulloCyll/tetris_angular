@@ -7,76 +7,40 @@
     You know the rules!
   </p>
 
-  <form class="form" #loginForm="ngForm" (submit)="verify(loginForm.form)">
+  <form class="form" [formGroup]="introForm" (submit)="onSubmit(introForm)">
     <div class="input-container">
       <label for="name">Your name:</label>
       <input
-        ngModel
-        #nameInput="ngModel"
-        required
         type="text"
         name="name"
         id="name"
         placeholder="Enter your name"
-        minlength="3"
-        [disabled]="loginForm.submitted"
+        formControlName="name"
       />
       <div class="alert">
-        <div
-          *ngIf="
-            !nameInput.valid && nameInput.touched && nameInput.value === ''
-          "
-        >
-          Name is required
-        </div>
-        <div
-          *ngIf="
-            !nameInput.valid &&
-            nameInput.touched &&
-            nameInput.value.length < 3 &&
-            nameInput.value != ''
-          "
-        >
+        <div *ngIf="name?.touched && !name?.dirty">Name is required</div>
+        <div *ngIf="name?.touched && name?.invalid">
           Name must be at least 3 characters long
         </div>
       </div>
       <div class="valid">
-        <div
-          *ngIf="
-            nameInput.valid && nameInput.touched && nameInput.value.length >= 3
-          "
-        >
-          Name is valid
-        </div>
+        <div *ngIf="!name?.invalid">Name is valid</div>
       </div>
     </div>
 
     <div class="input-container">
       <label for="secret">Secret code:</label>
       <input
-        ngModel
-        #secretInput="ngModel"
         required
         type="text"
         name="secret"
         id="secret"
         placeholder="Enter your secret code"
-        [disabled]="loginForm.submitted"
+        formControlName="token"
       />
       <div class="alert">
-        <div
-          *ngIf="
-            !secretInput.valid &&
-            secretInput.touched &&
-            secretInput.value === ''
-          "
-        >
+        <div *ngIf="token?.invalid && token?.touched">
           Secret code is required
-        </div>
-      </div>
-      <div class="valid">
-        <div *ngIf="secretInput.valid && secretInput.touched">
-          Secret code is valid
         </div>
       </div>
     </div>
@@ -89,23 +53,11 @@
           type="checkbox"
           name="nightMode"
           id="nightMode"
-          [(ngModel)]="nightModeOn"
-          (change)="selectedColorPaletteHandler()"
+          formControlName="nightModeOn"
         />
         <span class="slider"></span>
       </div>
-      <button type="submit" [disabled]="!loginForm.valid">Sign in</button>
+      <button type="submit" [disabled]="!introForm.valid">Sign in</button>
     </div>
-
-    <hr />
-    <button
-      type="button"
-      class="start-button"
-      value="game"
-      [disabled]="!isLogged"
-      [routerLink]="['/game', selectedColorPallette]"
-    >
-      go to game
-    </button>
   </form>
 </div>
