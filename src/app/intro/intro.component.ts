@@ -28,6 +28,7 @@ export class IntroComponent implements OnInit {
       nightModeOn: [this._storage.readNightModeOnStatus],
     });
 
+    //zmiana kontrolki -> zmiana koloru
     this.nightModeOnControl?.valueChanges.subscribe((item) => {
       this.nightModeOn = item;
       this.selectedColorPaletteHandler();
@@ -38,6 +39,12 @@ export class IntroComponent implements OnInit {
   public auth: any = { success: false };
   public nightModeOn: boolean = this._storage.readNightModeOnStatus;
   public selectedColorPallette: string = 'normal';
+
+  public getPlayerNameFromLocalStorage = () => {
+    this.introForm.patchValue({
+      name: localStorage.getItem('player'),
+    });
+  };
 
   public selectedColorPaletteHandler() {
     this.nightModeOn
@@ -67,6 +74,7 @@ export class IntroComponent implements OnInit {
       this.isLogged = this.auth.success;
 
       if (this.isLogged) {
+        localStorage.setItem('player', playerName);
         this._router.navigate(['/game', this.selectedColorPallette]);
       } else alert('Wrong TOKEN');
     });
@@ -88,5 +96,6 @@ export class IntroComponent implements OnInit {
     this._storage.setPlayerName('');
     this._storage.setSecretToken('');
     this._storage.setScore(0);
+    this.getPlayerNameFromLocalStorage();
   }
 }

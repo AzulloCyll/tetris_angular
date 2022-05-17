@@ -44,7 +44,7 @@ export class GameComponent implements OnInit {
     this.score = this._storage.readScore;
 
     this._route.params.subscribe((params) => {
-      this.color = params['color']; //inaczej niż w wykładzie (params.color)
+      this.color = params['color']; //można zmienić w ustawieniach, żeby było params.color
       console.log(params['color']);
     });
   }
