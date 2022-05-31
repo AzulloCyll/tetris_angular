@@ -92,3 +92,17 @@ tetris-core.contrast {
     }
   }
 }
+
+.dark-theme {
+  & .modal {
+    & .center {
+      & .scores {
+        & .names {
+          & div {
+            color: red !important;
+          }
+        }
+      }
+    }
+  }
+}
